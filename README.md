@@ -1,2 +1,0 @@
-# ckip-transformers
-CKIP Transformers

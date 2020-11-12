@@ -1,0 +1,11 @@
+.rst-content p.rubric {
+	font-size: 125%;
+}
+
+.rst-content table.docutils th p {
+	margin-bottom: 0;
+}
+
+.wy-nav-content {
+	max-width: 1280px;
+}
