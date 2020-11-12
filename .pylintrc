@@ -1,0 +1,8 @@
+[MASTER]
+
+disable =
+	logging-fstring-interpolation,
+
+[FORMAT]
+
+max-line-length = 128
