@@ -68,6 +68,12 @@ https://ckip-transformers.readthedocs.io/
 .. |ReadTheDocs Home| image:: https://img.shields.io/website/https/ckip-transformers.readthedocs.io.svg?maxAge=3600&up_message=online&down_message=offline
    :target: https://ckip-transformers.readthedocs.io
 
+Relative Demos / Packages
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- `CkipTagger <https://github.com/ckiplab/ckiptagger>`_: An alternative Chinese NLP library with using BiLSTM.
+- `CKIP CoreNLP Toolkit <https://github.com/ckiplab/ckipnlp>`_: A Chinese NLP library with more NLP tasks and utilities.
+
 Contributers
 ^^^^^^^^^^^^
 
@@ -97,13 +103,14 @@ See https://ckip-transformers.readthedocs.io/en/latest/_api/ckip_transformers.ht
 
 The complete script of this example is https://github.com/ckiplab/ckip-transformers/blob/master/example/example.py.
 
-The following sections assume:
+1. Import module
+^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
    from ckip_transformers.nlp import CkipWordSegmenter, CkipPosTagger, CkipNerChunker
 
-1. Load models
+2. Load models
 ^^^^^^^^^^^^^^
 
 .. code-block:: python
@@ -113,7 +120,7 @@ The following sections assume:
    pos_driver = CkipPosTagger()
    ner_driver = CkipNerChunker()
 
-2. Run pipeline
+3. Run pipeline
 ^^^^^^^^^^^^^^^
 
 - The input for word segmentation and named-entity recognition must be a list of sentences.
@@ -132,7 +139,7 @@ The following sections assume:
    pos = pos_driver(ws)
    ner = ner_driver(text)
 
-3. Show results
+4. Show results
 ^^^^^^^^^^^^^^^
 
 .. code-block:: python
