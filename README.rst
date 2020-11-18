@@ -174,6 +174,26 @@ The following sections assume:
    NerToken(word='第一', ner='ORDINAL', idx=(56, 58))
    NerToken(word='華裔', ner='NORP', idx=(60, 62))
 
+Pretrained Models
+-----------------
+
+One may also use our pretrained models with HuggingFace transformers library directly: https://huggingface.co/ckiplab/.
+
+Pretrained Language Models
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* `ALBERT Tiny <https://huggingface.co/ckiplab/albert-tiny-chinese>`_
+* `ALBERT Base <https://huggingface.co/ckiplab/albert-base-chinese>`_
+* `BERT Base <https://huggingface.co/ckiplab/bert-base-chinese>`_
+* `GPT2 Base <https://huggingface.co/ckiplab/gpt2-base-chinese>`_
+
+NLP Task Models
+^^^^^^^^^^^^^^^
+
+* `BERT Base — Word Segmentation <https://huggingface.co/ckiplab/bert-base-chinese-ws>`_
+* `BERT Base — Part-of-Speech Tagging <https://huggingface.co/ckiplab/bert-base-chinese-pos>`_
+* `BERT Base — Named-Entity Recognition <https://huggingface.co/ckiplab/bert-base-chinese-ner>`_
+
 License
 -------
 
