@@ -44,6 +44,7 @@ def main():
         packages=find_namespace_packages(include=['ckip_transformers', 'ckip_transformers.*',]),
         install_requires=[
             'transformers>=3.5.0',
+            'torch>=1.1.0',
         ],
         data_files=[],
     )

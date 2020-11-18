@@ -43,7 +43,7 @@ class CkipWordSegmenter(CkipTokenClassification):
     def __call__(self,
         input_text: List[str],
         *,
-        max_length: Optional[int] = 512,
+        max_length: Optional[int] = None,
     ) -> List[List[str]]:
         """Call the driver.
 
@@ -51,7 +51,7 @@ class CkipWordSegmenter(CkipTokenClassification):
         ----------
             input_text : ``List[str]``
                 The input sentences. Each sentence is a string.
-            max_length : ``int``, *optional*, defaults to ``512``
+            max_length : ``int``, *optional*
                 The maximum length of the sentence,
                 must not longer then the maximum sequence length for this model (i.e. ``tokenizer.model_max_length``).
 
@@ -116,7 +116,7 @@ class CkipPosTagger(CkipTokenClassification):
     def __call__(self,
         input_text: List[List[str]],
         *,
-        max_length: Optional[int] = 512,
+        max_length: Optional[int] = None,
     ) -> List[List[str]]:
         """Call the driver.
 
@@ -124,7 +124,7 @@ class CkipPosTagger(CkipTokenClassification):
         ----------
             input_text : ``List[List[str]]``
                 The input sentences. Each sentence is a list of strings (words).
-            max_length : ``int``, *optional*, defaults to ``512``
+            max_length : ``int``, *optional*
                 The maximum length of the sentence,
                 must not longer then the maximum sequence length for this model (i.e. ``tokenizer.model_max_length``).
 
@@ -171,7 +171,7 @@ class CkipNerChunker(CkipTokenClassification):
     """
 
     def __init__(self,
-        model_name: Optional[str]='ckiplab/bert-base-chinese-ner',
+        model_name: Optional[str] = 'ckiplab/bert-base-chinese-ner',
         tokenizer_name: Optional[str] = None,
     ):
         super().__init__(model_name=model_name, tokenizer_name=tokenizer_name)
@@ -179,7 +179,7 @@ class CkipNerChunker(CkipTokenClassification):
     def __call__(self,
         input_text: List[str],
         *,
-        max_length: Optional[int] = 512,
+        max_length: Optional[int] = None,
     ) -> List[List[NerToken]]:
         """Call the driver.
 
@@ -187,7 +187,7 @@ class CkipNerChunker(CkipTokenClassification):
         ----------
             input_text : ``List[str]``
                 The input sentences. Each sentence is a string.
-            max_length : ``int``, *optional*, defaults to ``512``
+            max_length : ``int``, *optional*
                 The maximum length of the sentence,
                 must not longer then the maximum sequence length for this model (i.e. ``tokenizer.model_max_length``).
 

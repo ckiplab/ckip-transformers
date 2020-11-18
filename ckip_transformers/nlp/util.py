@@ -48,7 +48,7 @@ class CkipTokenClassification:
     def __call__(self,
         input_text: Union[List[str], List[List[str]]],
         *,
-        max_length: Optional[int],
+        max_length: Optional[int] = None,
     ):
         """Call the driver.
 
