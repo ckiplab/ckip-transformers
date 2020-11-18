@@ -91,11 +91,6 @@ Requirements:
 * `PyTorch <https://pytorch.org>`__ 1.1+
 * `HuggingFace Transformers <https://huggingface.co/transformers/>`__ 3.5+
 
-Installation via Pip
-^^^^^^^^^^^^^^^^^^^^
-
-``pip install -U ckip-transformers``
-
 Usage
 -----
 
