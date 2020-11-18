@@ -6,6 +6,10 @@
 	margin-bottom: 0;
 }
 
+.rst-content tt.literal, .rst-content tt.literal, .rst-content code.literal {
+	color: #0057A9;
+}
+
 .wy-nav-content {
 	max-width: 1280px;
 }
