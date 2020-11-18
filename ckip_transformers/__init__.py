@@ -10,9 +10,9 @@ __author_email__ = 'emfomy@gmail.com'
 __copyright__ = '2020 CKIP Lab'
 
 __title__ = 'CKIP Transformers'
-__version__ = '0.0.0'
+__version__ = '0.1.0'
 __description__ = 'CKIP Transformers'
-__license__ = 'CC BY-NC-SA 4.0'
+__license__ = 'GPL-3.0'
 
 __url__ = 'https://ckip-transformers.readthedocs.io'
 __download_url__ = __url__+'/tarball/'+__version__

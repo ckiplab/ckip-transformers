@@ -3,7 +3,7 @@
 
 __author__ = 'Mu Yang <http://muyang.pro>'
 __copyright__ = '2020 CKIP Lab'
-__license__ = 'CC BY-NC-SA 4.0'
+__license__ = 'GPL-3.0'
 
 from setuptools import setup, find_namespace_packages
 import ckip_transformers as about
@@ -28,7 +28,7 @@ def main():
         platforms=['linux_x86_64'],
         license=about.__license__,
         classifiers=[
-            'Development Status :: 1 - Planning',
+            'Development Status :: 4 - Beta',
             'Environment :: Console',
             'Programming Language :: Python',
             'Programming Language :: Python :: 3',
@@ -36,15 +36,15 @@ def main():
             'Programming Language :: Python :: 3.7',
             'Programming Language :: Python :: 3.8',
             'Programming Language :: Python :: 3 :: Only',
-            'License :: Free for non-commercial use',
+            'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
             'Operating System :: POSIX :: Linux',
             'Natural Language :: Chinese (Traditional)',
         ],
         python_requires='>=3.6',
         packages=find_namespace_packages(include=['ckip_transformers', 'ckip_transformers.*',]),
         install_requires=[
-            'appdirs>=1.4.3',
             'transformers>=3.5.0',
+            'torch>=1.1.0',
         ],
         data_files=[],
     )

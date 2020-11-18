@@ -1,7 +1,10 @@
 [MASTER]
 
 disable =
+	duplicate-code,
 	logging-fstring-interpolation,
+	too-few-public-methods,
+	too-many-locals,
 
 [FORMAT]
 
