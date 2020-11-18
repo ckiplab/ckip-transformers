@@ -77,12 +77,13 @@ Contributers
 Installation
 ------------
 
-Requirements
-^^^^^^^^^^^^
+``pip install -U ckip-transformers``
+
+Requirements:
 
 * `Python <https://www.python.org>`__ 3.6+
-* `Huggingface Transformers <https://huggingface.co/transformers/>`__ 3.5+
 * `PyTorch <https://pytorch.org>`__ 1.1+
+* `HuggingFace Transformers <https://huggingface.co/transformers/>`__ 3.5+
 
 Installation via Pip
 ^^^^^^^^^^^^^^^^^^^^
@@ -92,9 +93,9 @@ Installation via Pip
 Usage
 -----
 
-See https://ckip-transformers.readthedocs.io/ for API details.
+See https://ckip-transformers.readthedocs.io/en/latest/_api/ckip_transformers.html for API details.
 
-The complete script of this example is `example.py <https://github.com/ckiplab/ckip-transformers/blob/master/example/example.py>`_.
+The complete script of this example is https://github.com/ckiplab/ckip-transformers/blob/master/example/example.py.
 
 The following sections assume:
 
