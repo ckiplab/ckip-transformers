@@ -9,6 +9,12 @@ __author__ = 'Mu Yang <http://muyang.pro>'
 __copyright__ = '2020 CKIP Lab'
 __license__ = 'GPL-3.0'
 
+
+from abc import (
+    ABCMeta,
+    abstractmethod,
+)
+
 from typing import (
     List,
     NamedTuple,
@@ -27,7 +33,7 @@ from transformers import (
 
 ################################################################################################################################
 
-class CkipTokenClassification:
+class CkipTokenClassification(metaclass=ABCMeta):
     """The base class for token classification task.
 
         Parameters
@@ -44,6 +50,32 @@ class CkipTokenClassification:
     ):
         self.model = AutoModelForTokenClassification.from_pretrained(model_name)
         self.tokenizer = BertTokenizerFast.from_pretrained(tokenizer_name or model_name)
+
+    @classmethod
+    def from_pretrained(cls,
+        model_name: Optional[str] = None,
+        tokenizer_name: Optional[str] = None,
+    ):
+        return cls(model_name=model_name, tokenizer_name=tokenizer_name)
+
+    ########################################################################################################################
+
+    @classmethod
+    @abstractmethod
+    def _model_names(cls):
+        return NotImplemented  # pragma: no cover
+
+    def _get_model_name_from_level(self,
+        level: int,
+    ):
+        try:
+            model_name = self._model_names[level]
+        except KeyError as exc:
+            raise KeyError(f'Invalid level {level}') from e
+
+        return model_name
+
+    ########################################################################################################################
 
     def __call__(self,
         input_text: Union[List[str], List[List[str]]],

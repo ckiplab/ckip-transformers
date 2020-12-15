@@ -11,11 +11,11 @@ def main():
 
    # Initialize drivers
    print('Initializing drivers ... WS')
-   ws_driver  = CkipWordSegmenter()
+   ws_driver  = CkipWordSegmenter(level=3)
    print('Initializing drivers ... POS')
-   pos_driver = CkipPosTagger()
+   pos_driver = CkipPosTagger(level=3)
    print('Initializing drivers ... NER')
-   ner_driver = CkipNerChunker()
+   ner_driver = CkipNerChunker(level=3)
    print('Initializing drivers ... done')
    print()
 

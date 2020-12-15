@@ -12,6 +12,7 @@ __license__ = 'GPL-3.0'
 from typing import (
     List,
     Optional,
+    Union,
 )
 
 import numpy as np
@@ -28,17 +29,20 @@ class CkipWordSegmenter(CkipTokenClassification):
 
         Parameters
         ----------
-            model_name : ``str``, *optional*, defaults to ``'ckiplab/bert-base-chinese-ws'``
-                The pretrained model name.
-            tokenizer_name : ``str``, *optional*, defaults to **model_name**
-                The pretrained tokenizer name.
+            level : ``str`` *optional*, defaults to 3, must be 1—3
+                The model level. The higher the level is, the more accurate and slower the model is.
     """
 
+    _model_names = {
+        1: 'ckiplab/albert-tiny-chinese-ws',
+        2: 'ckiplab/albert-base-chinese-ws',
+        3: 'ckiplab/bert-base-chinese-ws',
+    }
+
     def __init__(self,
-        model_name: Optional[str] = 'ckiplab/bert-base-chinese-ws',
-        tokenizer_name: Optional[str] = None,
+        level: int = 3,
     ):
-        super().__init__(model_name=model_name, tokenizer_name=tokenizer_name)
+        super().__init__(model_name=self._get_model_name_from_level(level))
 
     def __call__(self,
         input_text: List[str],
@@ -101,17 +105,20 @@ class CkipPosTagger(CkipTokenClassification):
 
         Parameters
         ----------
-            model_name : ``str``, *optional*, defaults to ``'ckiplab/bert-base-chinese-pos'``
-                The pretrained model name.
-            tokenizer_name : ``str``, *optional*, defaults to **model_name**
-                The pretrained tokenizer name.
+            level : ``str`` *optional*, defaults to 3, must be 1—3
+                The model level. The higher the level is, the more accurate and slower the model is.
     """
 
+    _model_names = {
+        1: 'ckiplab/albert-tiny-chinese-pos',
+        2: 'ckiplab/albert-base-chinese-pos',
+        3: 'ckiplab/bert-base-chinese-pos',
+    }
+
     def __init__(self,
-        model_name: Optional[str] = 'ckiplab/bert-base-chinese-pos',
-        tokenizer_name: Optional[str] = None,
+        level: int = 3,
     ):
-        super().__init__(model_name=model_name, tokenizer_name=tokenizer_name)
+        super().__init__(model_name=self._get_model_name_from_level(level))
 
     def __call__(self,
         input_text: List[List[str]],
@@ -164,17 +171,20 @@ class CkipNerChunker(CkipTokenClassification):
 
         Parameters
         ----------
-            model_name : ``str``, *optional*, defaults to ``'ckiplab/bert-base-chinese-ner'``
-                The pretrained model name.
-            tokenizer_name : ``str``, *optional*, defaults to **model_name**
-                The pretrained tokenizer name.
+            level : ``str`` *optional*, defaults to 3, must be 1—3
+                The model level. The higher the level is, the more accurate and slower the model is.
     """
 
+    _model_names = {
+        1: 'ckiplab/albert-tiny-chinese-ner',
+        2: 'ckiplab/albert-base-chinese-ner',
+        3: 'ckiplab/bert-base-chinese-ner',
+    }
+
     def __init__(self,
-        model_name: Optional[str] = 'ckiplab/bert-base-chinese-ner',
-        tokenizer_name: Optional[str] = None,
+        level: int = 3,
     ):
-        super().__init__(model_name=model_name, tokenizer_name=tokenizer_name)
+        super().__init__(model_name=self._get_model_name_from_level(level))
 
     def __call__(self,
         input_text: List[str],
@@ -186,7 +196,7 @@ class CkipNerChunker(CkipTokenClassification):
         Parameters
         ----------
             input_text : ``List[str]``
-                The input sentences. Each sentence is a string.
+                The input sentences. Each sentence is a string or a list or string (words).
             max_length : ``int``, *optional*
                 The maximum length of the sentence,
                 must not longer then the maximum sequence length for this model (i.e. ``tokenizer.model_max_length``).
@@ -244,11 +254,11 @@ class CkipNerChunker(CkipTokenClassification):
                 elif bioes == 'E':
                     if entity_ner == ner:
                         entity_word += input_char
-                    output_sent.append(NerToken(
-                        word = entity_word,
-                        ner  = entity_ner,
-                        idx  = (entity_idx0, index_char+len(input_char),),
-                    ))
+                        output_sent.append(NerToken(
+                            word = entity_word,
+                            ner  = entity_ner,
+                            idx  = (entity_idx0, index_char+len(input_char),),
+                        ))
                     entity_ner = None
 
             output_text.append(output_sent)

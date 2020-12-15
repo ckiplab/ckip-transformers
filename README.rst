@@ -12,51 +12,51 @@ Git
 
 https://github.com/emfomy/ckip-transformers
 
-|GitHub Version| |GitHub Release| |GitHub Issues|
+|GitHub Version| |GitHub License| |GitHub Release| |GitHub Issues|
 
-.. |GitHub Version| image:: https://img.shields.io/github/v/release/emfomy/ckip-transformers.svg?maxAge=3600
+.. |GitHub Version| image:: https://img.shields.io/github/v/release/emfomy/ckip-transformers.svg?cacheSeconds=3600
    :target: https://github.com/emfomy/ckip-transformers/releases
 
-.. |GitHub License| image:: https://img.shields.io/github/license/emfomy/ckip-transformers.svg?maxAge=3600
+.. |GitHub License| image:: https://img.shields.io/github/license/emfomy/ckip-transformers.svg?cacheSeconds=3600
    :target: https://github.com/emfomy/ckip-transformers/blob/master/LICENSE
 
-.. |GitHub Release| image:: https://img.shields.io/github/release-date/emfomy/ckip-transformers.svg?maxAge=3600
+.. |GitHub Release| image:: https://img.shields.io/github/release-date/emfomy/ckip-transformers.svg?cacheSeconds=3600
 
-.. |GitHub Downloads| image:: https://img.shields.io/github/downloads/emfomy/ckip-transformers/total.svg?maxAge=3600
+.. |GitHub Downloads| image:: https://img.shields.io/github/downloads/emfomy/ckip-transformers/total.svg?cacheSeconds=3600
    :target: https://github.com/emfomy/ckip-transformers/releases/latest
 
-.. |GitHub Issues| image:: https://img.shields.io/github/issues/emfomy/ckip-transformers.svg?maxAge=3600
+.. |GitHub Issues| image:: https://img.shields.io/github/issues/emfomy/ckip-transformers.svg?cacheSeconds=3600
    :target: https://github.com/emfomy/ckip-transformers/issues
 
-.. |GitHub Forks| image:: https://img.shields.io/github/forks/emfomy/ckip-transformers.svg?style=social&label=Fork&maxAge=3600
+.. |GitHub Forks| image:: https://img.shields.io/github/forks/emfomy/ckip-transformers.svg?style=social&label=Fork&cacheSeconds=3600
 
-.. |GitHub Stars| image:: https://img.shields.io/github/stars/emfomy/ckip-transformers.svg?style=social&label=Star&maxAge=3600
+.. |GitHub Stars| image:: https://img.shields.io/github/stars/emfomy/ckip-transformers.svg?style=social&label=Star&cacheSeconds=3600
 
-.. |GitHub Watchers| image:: https://img.shields.io/github/watchers/emfomy/ckip-transformers.svg?style=social&label=Watch&maxAge=3600
+.. |GitHub Watchers| image:: https://img.shields.io/github/watchers/emfomy/ckip-transformers.svg?style=social&label=Watch&cacheSeconds=3600
 
 PyPI
 ^^^^
 
 https://pypi.org/project/ckip-transformers
 
-|PyPI Version| |PyPI License| |PyPI Downloads| |PyPI Python| |PyPI Implementation| |PyPI Status|
+|PyPI Version| |PyPI License| |PyPI Downloads| |PyPI Python| |PyPI Implementation| |PyPI Format| |PyPI Status|
 
-.. |PyPI Version| image:: https://img.shields.io/pypi/v/ckip-transformers.svg?maxAge=3600
+.. |PyPI Version| image:: https://img.shields.io/pypi/v/ckip-transformers.svg?cacheSeconds=3600
    :target: https://pypi.org/project/ckip-transformers
 
-.. |PyPI License| image:: https://img.shields.io/pypi/l/ckip-transformers.svg?maxAge=3600
+.. |PyPI License| image:: https://img.shields.io/pypi/l/ckip-transformers.svg?cacheSeconds=3600
    :target: https://github.com/emfomy/ckip-transformers/blob/master/LICENSE
 
-.. |PyPI Downloads| image:: https://img.shields.io/pypi/dm/ckip-transformers.svg?maxAge=3600
+.. |PyPI Downloads| image:: https://img.shields.io/pypi/dm/ckip-transformers.svg?cacheSeconds=3600
    :target: https://pypi.org/project/ckip-transformers#files
 
-.. |PyPI Python| image:: https://img.shields.io/pypi/pyversions/ckip-transformers.svg?maxAge=3600
+.. |PyPI Python| image:: https://img.shields.io/pypi/pyversions/ckip-transformers.svg?cacheSeconds=3600
 
-.. |PyPI Implementation| image:: https://img.shields.io/pypi/implementation/ckip-transformers.svg?maxAge=3600
+.. |PyPI Implementation| image:: https://img.shields.io/pypi/implementation/ckip-transformers.svg?cacheSeconds=3600
 
-.. |PyPI Format| image:: https://img.shields.io/pypi/format/ckip-transformers.svg?maxAge=3600
+.. |PyPI Format| image:: https://img.shields.io/pypi/format/ckip-transformers.svg?cacheSeconds=3600
 
-.. |PyPI Status| image:: https://img.shields.io/pypi/status/ckip-transformers.svg?maxAge=3600
+.. |PyPI Status| image:: https://img.shields.io/pypi/status/ckip-transformers.svg?cacheSeconds=3600
 
 Documentation
 ^^^^^^^^^^^^^
@@ -65,7 +65,7 @@ https://ckip-transformers.readthedocs.io/
 
 |ReadTheDocs Home|
 
-.. |ReadTheDocs Home| image:: https://img.shields.io/website/https/ckip-transformers.readthedocs.io.svg?maxAge=3600&up_message=online&down_message=offline
+.. |ReadTheDocs Home| image:: https://img.shields.io/website/https/ckip-transformers.readthedocs.io.svg?cacheSeconds=3600&up_message=online&down_message=offline
    :target: https://ckip-transformers.readthedocs.io
 
 Relative Demos / Packages
@@ -160,7 +160,6 @@ The complete script of this example is https://github.com/ckiplab/ckip-transform
    傅達仁今將執行安樂死，卻突然爆出自己20年前遭緯來體育台封殺，他不懂自己哪裡得罪到電視台。
    傅達仁(Nb)　今(Nd)　將(D)　執行(VC)　安樂死(Na)　，(COMMACATEGORY)　卻(D)　突然(D)　爆出(VJ)　自己(Nh)　20(Neu)　年(Nf)　前(Ng)　遭(P)　緯來(Nb)　體育台(Na)　封殺(VC)　，(COMMACATEGORY)　他(Nh)　不(D)　懂(VK)　自己(Nh)　哪裡(Ncd)　得罪到(VC)　電視台(Nc)　。(PERIODCATEGORY)
    NerToken(word='傅達仁', ner='PERSON', idx=(0, 3))
-   NerToken(word='今', ner='DATE', idx=(3, 4))
    NerToken(word='20年', ner='DATE', idx=(18, 21))
    NerToken(word='緯來體育台', ner='ORG', idx=(23, 28))
 
@@ -191,6 +190,14 @@ Pretrained Language Models
 
 NLP Task Models
 ^^^^^^^^^^^^^^^
+
+* `ALBERT Tiny — Word Segmentation <https://huggingface.co/ckiplab/albert-tiny-chinese-ws>`_
+* `ALBERT Tiny — Part-of-Speech Tagging <https://huggingface.co/ckiplab/albert-tiny-chinese-pos>`_
+* `ALBERT Tiny — Named-Entity Recognition <https://huggingface.co/ckiplab/albert-tiny-chinese-ner>`_
+
+* `ALBERT Base — Word Segmentation <https://huggingface.co/ckiplab/albert-base-chinese-ws>`_
+* `ALBERT Base — Part-of-Speech Tagging <https://huggingface.co/ckiplab/albert-base-chinese-pos>`_
+* `ALBERT Base — Named-Entity Recognition <https://huggingface.co/ckiplab/albert-base-chinese-ner>`_
 
 * `BERT Base — Word Segmentation <https://huggingface.co/ckiplab/bert-base-chinese-ws>`_
 * `BERT Base — Part-of-Speech Tagging <https://huggingface.co/ckiplab/bert-base-chinese-pos>`_
