@@ -122,7 +122,7 @@ class CkipTokenClassification(metaclass=ABCMeta):
 
         input_ids_worded = [
             [
-                self.tokenizer.convert_tokens_to_ids(self.tokenizer.tokenize(input_word)) for input_word in input_sent
+                self.tokenizer.convert_tokens_to_ids(list(input_word)) for input_word in input_sent
             ] for input_sent in input_text
         ]
 

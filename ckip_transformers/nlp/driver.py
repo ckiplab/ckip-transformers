@@ -167,8 +167,8 @@ class CkipPosTagger(CkipTokenClassification):
         output_text = []
         for sent_data in zip(input_text, index_map):
             output_sent = []
-            for _, logits_index in zip(*sent_data):
-                if logits_index is None:
+            for input_char, logits_index in zip(*sent_data):
+                if logits_index is None or input_char.isspace():
                     label = 'WHITESPACE'
                 else:
                     label = id2label[np.argmax(logits[logits_index])]

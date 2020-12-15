@@ -141,6 +141,7 @@ The complete script of this example is https://github.com/ckiplab/ckip-transform
    text = [
       '傅達仁今將執行安樂死，卻突然爆出自己20年前遭緯來體育台封殺，他不懂自己哪裡得罪到電視台。',
       '美國參議院針對今天總統布什所提名的勞工部長趙小蘭展開認可聽證會，預料她將會很順利通過參議院支持，成為該國有史以來第一位的華裔女性內閣成員。',
+      '… 你確定嗎… 不要再騙了……',
    ]
 
    # Run pipeline
@@ -172,7 +173,7 @@ The complete script of this example is https://github.com/ckiplab/ckip-transform
 .. code-block:: text
 
    傅達仁今將執行安樂死，卻突然爆出自己20年前遭緯來體育台封殺，他不懂自己哪裡得罪到電視台。
-   傅達仁(Nb)　今(Nd)　將(D)　執行(VC)　安樂死(Na)　，(COMMACATEGORY)　卻(D)　突然(D)　爆出(VJ)　自己(Nh)　20(Neu)　年(Nf)　前(Ng)　遭(P)　緯來(Nb)　體育台(Na)　封殺(VC)　，(COMMACATEGORY)　他(Nh)　不(D)　懂(VK)　自己(Nh)　哪裡(Ncd)　得罪到(VC)　電視台(Nc)　。(PERIODCATEGORY)
+   傅達仁(Nb)　今(Nd)　將(D)　執行(VC)　安樂死(Na)　，(COMMACATEGORY)　卻(D)　突然(D)　爆出(VJ)　自己(Nh)　20(Neu)　年(Nd)　前(Ng)　遭(P)　緯來(Nb)　體育台(Na)　封殺(VC)　，(COMMACATEGORY)　他(Nh)　不(D)　懂(VK)　自己(Nh)　哪裡(Ncd)　得罪到(VC)　電視台(Nc)　。(PERIODCATEGORY)
    NerToken(word='傅達仁', ner='PERSON', idx=(0, 3))
    NerToken(word='20年', ner='DATE', idx=(18, 21))
    NerToken(word='緯來體育台', ner='ORG', idx=(23, 28))
@@ -188,6 +189,9 @@ The complete script of this example is https://github.com/ckiplab/ckip-transform
    NerToken(word='參議院', ner='ORG', idx=(42, 45))
    NerToken(word='第一', ner='ORDINAL', idx=(56, 58))
    NerToken(word='華裔', ner='NORP', idx=(60, 62))
+
+   … 你確定嗎… 不要再騙了……
+   …(DASHCATEGORY)　 (WHITESPACE)　你(Nh)　確定(VK)　嗎(T)　…(DASHCATEGORY)　 (WHITESPACE)　不要(D)　再(D)　騙(VC)　了(Di)　…(DASHCATEGORY)　…(ETCCATEGORY)
 
 Pretrained Models
 -----------------
