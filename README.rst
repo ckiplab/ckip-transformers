@@ -80,6 +80,20 @@ Contributers
 * `Mu Yang <https://muyang.pro>`__ at `CKIP <https://ckip.iis.sinica.edu.tw>`__ (Author & Maintainer)
 * `Wei-Yun Ma <https://www.iis.sinica.edu.tw/pages/ma/>`__ at `CKIP <https://ckip.iis.sinica.edu.tw>`__ (Maintainer)
 
+Performance
+^^^^^^^^^^^
+
+================================  =======  =========  ========
+Tool                              WS (F1)  POS (Acc)  NER (F1)
+================================  =======  =========  ========
+Ckip Transformers (level 3†)      97.60%   95.67%     81.18%
+Ckip Transformers (level 2†)      97.33%   95.30%     79.47%
+Ckip Transformers (level 1†)      96.66%   94.48%     71.17%
+CkipTagger‡                       97.33%   94.59%     77.87%
+Monpa§                            92.58%   --         --
+Jeiba‖                            81.18%   --         --
+================================  =======  =========  ========
+
 Installation
 ------------
 

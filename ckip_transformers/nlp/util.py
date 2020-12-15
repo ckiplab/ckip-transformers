@@ -23,7 +23,15 @@ from typing import (
     Union,
 )
 
+from tqdm import tqdm
+
+import numpy as np
+
 import torch
+from torch.utils.data import (
+    DataLoader,
+    TensorDataset,
+)
 
 from transformers import (
     AutoModelForTokenClassification,
@@ -34,21 +42,7 @@ from transformers import (
 ################################################################################################################################
 
 class CkipTokenClassification(metaclass=ABCMeta):
-    """The base class for token classification task."""
-
-    def __init__(self,
-        model_name: str,
-        tokenizer_name: Optional[str] = None,
-    ):
-        self.model = AutoModelForTokenClassification.from_pretrained(model_name)
-        self.tokenizer = BertTokenizerFast.from_pretrained(tokenizer_name or model_name)
-
-    @classmethod
-    def from_pretrained(cls,
-        model_name: Optional[str] = None,
-        tokenizer_name: Optional[str] = None,
-    ):
-        """Instantiate a pretrained model from a pre-trained model configuration.
+    """The base class for token classification task.
 
         Parameters
         ----------
@@ -56,8 +50,22 @@ class CkipTokenClassification(metaclass=ABCMeta):
                 The pretrained model name (e.g. ``'ckiplab/bert-base-chinese-ws'``).
             tokenizer_name : ``str``, *optional*, defaults to **model_name**
                 The pretrained tokenizer name (e.g. ``'bert-base-chinese'``).
+            device : ``int``, *optional*, defaults to -1,
+                Device ordinal for CPU/GPU supports.
+                Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id.
         """
-        return cls(model_name=model_name, tokenizer_name=tokenizer_name)
+
+    def __init__(self,
+        model_name: str,
+        tokenizer_name: Optional[str] = None,
+        *,
+        device: int = -1,
+    ):
+        self.model = AutoModelForTokenClassification.from_pretrained(model_name)
+        self.tokenizer = BertTokenizerFast.from_pretrained(tokenizer_name or model_name)
+
+        self.device = torch.device('cpu' if device < 0 else f'cuda:{device}')
+        self.model.to(self.device)
 
     ########################################################################################################################
 
@@ -81,7 +89,9 @@ class CkipTokenClassification(metaclass=ABCMeta):
     def __call__(self,
         input_text: Union[List[str], List[List[str]]],
         *,
+        batch_size: int = 256,
         max_length: Optional[int] = None,
+        show_progress: bool = True,
     ):
         """Call the driver.
 
@@ -89,9 +99,13 @@ class CkipTokenClassification(metaclass=ABCMeta):
         ----------
             input_text : ``List[str]`` or ``List[List[str]]``
                 The input sentences. Each sentence is a string or a list of string.
-            max_length : ``int``
+            batch_size : ``int``, *optional*, defaults to 16
+                The size of mini-batch.
+            max_length : ``int``, *optional*
                 The maximum length of the sentence,
                 must not longer then the maximum sequence length for this model (i.e. ``tokenizer.model_max_length``).
+            show_progress : ``int``, *optional*, defaults to True
+                Show progress bar.
         """
 
         model_max_length = self.tokenizer.model_max_length - 2  # Add [CLS] and [SEP]
@@ -103,6 +117,9 @@ class CkipTokenClassification(metaclass=ABCMeta):
             max_length = model_max_length
 
         # Get worded input IDs
+        if show_progress:
+            input_text = tqdm(input_text, desc='Tokenize')
+
         input_ids_worded = [
             [
                 self.tokenizer.convert_tokens_to_ids(self.tokenizer.tokenize(input_word)) for input_word in input_sent
@@ -126,8 +143,8 @@ class CkipTokenClassification(metaclass=ABCMeta):
             input_ids=input_ids,
         )
 
-        # Convert to tensors
-        batch = BatchEncoding(
+        # Convert input format
+        encoded_input = BatchEncoding(
             data=dict(
                 input_ids=input_ids,
                 attention_mask=attention_mask,
@@ -135,14 +152,33 @@ class CkipTokenClassification(metaclass=ABCMeta):
             tensor_type='pt',
         )
 
-        # Call Model
-        with torch.no_grad():
-            (
-                loss,
-            ) = self.model(**batch)
-            loss = loss.cpu().numpy()[:, 1:, :]  # Remove [CLS]
+        # Create dataset
+        dataset = TensorDataset(*encoded_input.values())
+        dataloader = DataLoader(
+            dataset=dataset,
+            batch_size=batch_size,
+            shuffle=False,
+            drop_last=False,
+            pin_memory=True,
+        )
+        if show_progress:
+            dataloader = tqdm(dataloader, desc='Predict')
 
-        return loss, index_map
+        # Call Model
+        logits = []
+        with torch.no_grad():
+            for batch in dataloader:
+                batch = tuple(tensor.to(self.device) for tensor in batch)
+                (
+                    batch_logits,
+                ) = self.model(**dict(zip(encoded_input.keys(), batch)))
+                batch_logits = batch_logits.cpu().numpy()[:, 1:, :]  # Remove [CLS]
+                logits.append(batch_logits)
+
+        # Call model
+        logits = np.concatenate(logits, axis=0)
+
+        return logits, index_map
 
     @staticmethod
     def _flatten_input_ids(*,

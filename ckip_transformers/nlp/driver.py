@@ -30,6 +30,9 @@ class CkipWordSegmenter(CkipTokenClassification):
         ----------
             level : ``str`` *optional*, defaults to 3, must be 1—3
                 The model level. The higher the level is, the more accurate and slower the model is.
+            device : ``int``, *optional*, defaults to -1,
+                Device ordinal for CPU/GPU supports.
+                Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id.
     """
 
     _model_names = {
@@ -40,13 +43,13 @@ class CkipWordSegmenter(CkipTokenClassification):
 
     def __init__(self,
         level: int = 3,
+        **kwargs,
     ):
-        super().__init__(model_name=self._get_model_name_from_level(level))
+        super().__init__(model_name=self._get_model_name_from_level(level), **kwargs)
 
     def __call__(self,
         input_text: List[str],
-        *,
-        max_length: Optional[int] = None,
+        **kwargs,
     ) -> List[List[str]]:
         """Call the driver.
 
@@ -54,9 +57,13 @@ class CkipWordSegmenter(CkipTokenClassification):
         ----------
             input_text : ``List[str]``
                 The input sentences. Each sentence is a string.
+            batch_size : ``int``, *optional*, defaults to 16
+                The size of mini-batch.
             max_length : ``int``, *optional*
                 The maximum length of the sentence,
                 must not longer then the maximum sequence length for this model (i.e. ``tokenizer.model_max_length``).
+            show_progress : ``int``, *optional*, defaults to True
+                Show progress bar.
 
         Returns
         -------
@@ -66,25 +73,25 @@ class CkipWordSegmenter(CkipTokenClassification):
 
         # Call model
         (
-            loss,
+            logits,
             index_map,
-        ) = super().__call__(input_text, max_length=max_length)
+        ) = super().__call__(input_text, **kwargs)
 
         # Post-process results
         output_text = []
         for sent_data in zip(input_text, index_map):
             output_sent = []
             word = ''
-            for input_char, loss_index in zip(*sent_data):
-                if loss_index is None:
+            for input_char, logits_index in zip(*sent_data):
+                if logits_index is None:
                     if word:
                         output_sent.append(word)
                     output_sent.append(input_char)
                     word = ''
                 else:
-                    loss_b, loss_i = loss[loss_index]
+                    logits_b, logits_i = logits[logits_index]
 
-                    if loss_b > loss_i:
+                    if logits_b > logits_i:
                         if word:
                             output_sent.append(word)
                         word = input_char
@@ -106,6 +113,9 @@ class CkipPosTagger(CkipTokenClassification):
         ----------
             level : ``str`` *optional*, defaults to 3, must be 1—3
                 The model level. The higher the level is, the more accurate and slower the model is.
+            device : ``int``, *optional*, defaults to -1,
+                Device ordinal for CPU/GPU supports.
+                Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id.
     """
 
     _model_names = {
@@ -116,13 +126,13 @@ class CkipPosTagger(CkipTokenClassification):
 
     def __init__(self,
         level: int = 3,
+        **kwargs,
     ):
-        super().__init__(model_name=self._get_model_name_from_level(level))
+        super().__init__(model_name=self._get_model_name_from_level(level), **kwargs)
 
     def __call__(self,
         input_text: List[List[str]],
-        *,
-        max_length: Optional[int] = None,
+        **kwargs,
     ) -> List[List[str]]:
         """Call the driver.
 
@@ -130,9 +140,13 @@ class CkipPosTagger(CkipTokenClassification):
         ----------
             input_text : ``List[List[str]]``
                 The input sentences. Each sentence is a list of strings (words).
+            batch_size : ``int``, *optional*, defaults to 16
+                The size of mini-batch.
             max_length : ``int``, *optional*
                 The maximum length of the sentence,
                 must not longer then the maximum sequence length for this model (i.e. ``tokenizer.model_max_length``).
+            show_progress : ``int``, *optional*, defaults to True
+                Show progress bar.
 
         Returns
         -------
@@ -142,9 +156,9 @@ class CkipPosTagger(CkipTokenClassification):
 
         # Call model
         (
-            loss,
+            logits,
             index_map,
-        ) = super().__call__(input_text, max_length=max_length)
+        ) = super().__call__(input_text, **kwargs)
 
         # Get labels
         id2label = self.model.config.id2label
@@ -153,11 +167,11 @@ class CkipPosTagger(CkipTokenClassification):
         output_text = []
         for sent_data in zip(input_text, index_map):
             output_sent = []
-            for _, loss_index in zip(*sent_data):
-                if loss_index is None:
+            for _, logits_index in zip(*sent_data):
+                if logits_index is None:
                     label = 'WHITESPACE'
                 else:
-                    label = id2label[np.argmax(loss[loss_index])]
+                    label = id2label[np.argmax(logits[logits_index])]
                 output_sent.append(label)
             output_text.append(output_sent)
 
@@ -172,6 +186,9 @@ class CkipNerChunker(CkipTokenClassification):
         ----------
             level : ``str`` *optional*, defaults to 3, must be 1—3
                 The model level. The higher the level is, the more accurate and slower the model is.
+            device : ``int``, *optional*, defaults to -1,
+                Device ordinal for CPU/GPU supports.
+                Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id.
     """
 
     _model_names = {
@@ -182,13 +199,13 @@ class CkipNerChunker(CkipTokenClassification):
 
     def __init__(self,
         level: int = 3,
+        **kwargs,
     ):
-        super().__init__(model_name=self._get_model_name_from_level(level))
+        super().__init__(model_name=self._get_model_name_from_level(level), **kwargs)
 
     def __call__(self,
         input_text: List[str],
-        *,
-        max_length: Optional[int] = None,
+        **kwargs,
     ) -> List[List[NerToken]]:
         """Call the driver.
 
@@ -196,9 +213,13 @@ class CkipNerChunker(CkipTokenClassification):
         ----------
             input_text : ``List[str]``
                 The input sentences. Each sentence is a string or a list or string (words).
+            batch_size : ``int``, *optional*, defaults to 16
+                The size of mini-batch.
             max_length : ``int``, *optional*
                 The maximum length of the sentence,
                 must not longer then the maximum sequence length for this model (i.e. ``tokenizer.model_max_length``).
+            show_progress : ``int``, *optional*, defaults to True
+                Show progress bar.
 
         Returns
         -------
@@ -208,9 +229,9 @@ class CkipNerChunker(CkipTokenClassification):
 
         # Call model
         (
-            loss,
+            logits,
             index_map,
-        ) = super().__call__(input_text, max_length=max_length)
+        ) = super().__call__(input_text, **kwargs)
 
         # Get labels
         id2label = self.model.config.id2label
@@ -222,11 +243,11 @@ class CkipNerChunker(CkipTokenClassification):
             entity_word = None
             entity_ner = None
             entity_idx0 = None
-            for index_char, (input_char, loss_index,) in enumerate(zip(*sent_data)):
-                if loss_index is None:
+            for index_char, (input_char, logits_index,) in enumerate(zip(*sent_data)):
+                if logits_index is None:
                     label = 'O'
                 else:
-                    label = id2label[np.argmax(loss[loss_index])]
+                    label = id2label[np.argmax(logits[logits_index])]
 
                 if label == 'O':
                     entity_ner = None
