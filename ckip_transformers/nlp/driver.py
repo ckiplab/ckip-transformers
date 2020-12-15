@@ -12,7 +12,6 @@ __license__ = 'GPL-3.0'
 from typing import (
     List,
     Optional,
-    Union,
 )
 
 import numpy as np

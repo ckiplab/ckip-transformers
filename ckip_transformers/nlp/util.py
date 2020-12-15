@@ -34,15 +34,7 @@ from transformers import (
 ################################################################################################################################
 
 class CkipTokenClassification(metaclass=ABCMeta):
-    """The base class for token classification task.
-
-        Parameters
-        ----------
-            model_name : ``str``
-                The pretrained model name (e.g. ``'ckiplab/bert-base-chinese-ws'``).
-            tokenizer_name : ``str``, *optional*, defaults to **model_name**
-                The pretrained tokenizer name (e.g. ``'bert-base-chinese'``).
-    """
+    """The base class for token classification task."""
 
     def __init__(self,
         model_name: str,
@@ -56,6 +48,15 @@ class CkipTokenClassification(metaclass=ABCMeta):
         model_name: Optional[str] = None,
         tokenizer_name: Optional[str] = None,
     ):
+        """Instantiate a pretrained model from a pre-trained model configuration.
+
+        Parameters
+        ----------
+            model_name : ``str``
+                The pretrained model name (e.g. ``'ckiplab/bert-base-chinese-ws'``).
+            tokenizer_name : ``str``, *optional*, defaults to **model_name**
+                The pretrained tokenizer name (e.g. ``'bert-base-chinese'``).
+        """
         return cls(model_name=model_name, tokenizer_name=tokenizer_name)
 
     ########################################################################################################################
@@ -71,7 +72,7 @@ class CkipTokenClassification(metaclass=ABCMeta):
         try:
             model_name = self._model_names[level]
         except KeyError as exc:
-            raise KeyError(f'Invalid level {level}') from e
+            raise KeyError(f'Invalid level {level}') from exc
 
         return model_name
 
