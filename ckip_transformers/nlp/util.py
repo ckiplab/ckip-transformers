@@ -118,7 +118,7 @@ class CkipTokenClassification(metaclass=ABCMeta):
 
         # Get worded input IDs
         if show_progress:
-            input_text = tqdm(input_text, desc='Tokenize')
+            input_text = tqdm(input_text, desc='Tokenization')
 
         input_ids_worded = [
             [
@@ -162,7 +162,7 @@ class CkipTokenClassification(metaclass=ABCMeta):
             pin_memory=True,
         )
         if show_progress:
-            dataloader = tqdm(dataloader, desc='Predict')
+            dataloader = tqdm(dataloader, desc='Inference')
 
         # Call Model
         logits = []

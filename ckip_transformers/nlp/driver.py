@@ -45,7 +45,8 @@ class CkipWordSegmenter(CkipTokenClassification):
         level: int = 3,
         **kwargs,
     ):
-        super().__init__(model_name=self._get_model_name_from_level(level), **kwargs)
+        model_name = kwargs.pop('model_name', self._get_model_name_from_level(level))
+        super().__init__(model_name=model_name, **kwargs)
 
     def __call__(self,
         input_text: List[str],
@@ -128,7 +129,8 @@ class CkipPosTagger(CkipTokenClassification):
         level: int = 3,
         **kwargs,
     ):
-        super().__init__(model_name=self._get_model_name_from_level(level), **kwargs)
+        model_name = kwargs.pop('model_name', self._get_model_name_from_level(level))
+        super().__init__(model_name=model_name, **kwargs)
 
     def __call__(self,
         input_text: List[List[str]],
@@ -201,7 +203,8 @@ class CkipNerChunker(CkipTokenClassification):
         level: int = 3,
         **kwargs,
     ):
-        super().__init__(model_name=self._get_model_name_from_level(level), **kwargs)
+        model_name = kwargs.pop('model_name', self._get_model_name_from_level(level))
+        super().__init__(model_name=model_name, **kwargs)
 
     def __call__(self,
         input_text: List[str],

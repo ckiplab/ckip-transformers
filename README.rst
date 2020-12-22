@@ -1,11 +1,8 @@
 CKIP Transformers
 -----------------
 
-This open-source library implements CKIP Chinese NLP tools using transformers models.
-
-* (WS) Word Segmentation
-* (POS) Part-of-Speech Tagging
-* (NER) Named Entity Recognition
+| This project provides traditional Chinese transformers models (including ALBERT, BERT, GPT2) and NLP tools (including word segmentation, part-of-speech tagging, named entity recognition).
+| 這個專案提供了繁體中文的 transformers 模型（包含 ALBERT、BERT、GPT2）及自然語言處理工具（包含斷詞、詞性標記、實體辨識）。
 
 Git
 ^^^
@@ -71,6 +68,7 @@ https://ckip-transformers.readthedocs.io/
 Relative Demos / Packages
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
+- `CKIP Transformer Online Demo <https://ckip.iis.sinica.edu.tw/service/transformers/>`_: The online demo of this package.
 - `CkipTagger <https://github.com/ckiplab/ckiptagger>`_: An alternative Chinese NLP library with using BiLSTM.
 - `CKIP CoreNLP Toolkit <https://github.com/ckiplab/ckipnlp>`_: A Chinese NLP library with more NLP tasks and utilities.
 
@@ -80,22 +78,101 @@ Contributers
 * `Mu Yang <https://muyang.pro>`__ at `CKIP <https://ckip.iis.sinica.edu.tw>`__ (Author & Maintainer)
 * `Wei-Yun Ma <https://www.iis.sinica.edu.tw/pages/ma/>`__ at `CKIP <https://ckip.iis.sinica.edu.tw>`__ (Maintainer)
 
+Models
+------
+
+| One may also use our pretrained models with HuggingFace transformers library directly: https://huggingface.co/ckiplab/.
+| 您可於 https://huggingface.co/ckiplab/ 下載預訓練的模型。
+
+- Language Models
+
+   * `ALBERT Tiny <https://huggingface.co/ckiplab/albert-tiny-chinese>`_: ``ckiplab/albert-tiny-chinese``
+   * `ALBERT Base <https://huggingface.co/ckiplab/albert-base-chinese>`_: ``ckiplab/albert-base-chinese``
+   * `BERT Base <https://huggingface.co/ckiplab/bert-base-chinese>`_: ``ckiplab/bert-base-chinese``
+   * `GPT2 Base <https://huggingface.co/ckiplab/gpt2-base-chinese>`_: ``ckiplab/gpt2-base-chinese``
+
+- NLP Task Models
+
+   * `ALBERT Tiny — Word Segmentation <https://huggingface.co/ckiplab/albert-tiny-chinese-ws>`_: ``ckiplab/albert-tiny-chinese-ws``
+   * `ALBERT Tiny — Part-of-Speech Tagging <https://huggingface.co/ckiplab/albert-tiny-chinese-pos>`_: ``ckiplab/albert-tiny-chinese-pos``
+   * `ALBERT Tiny — Named-Entity Recognition <https://huggingface.co/ckiplab/albert-tiny-chinese-ner>`_: ``ckiplab/albert-tiny-chinese-ner``
+
+   * `ALBERT Base — Word Segmentation <https://huggingface.co/ckiplab/albert-base-chinese-ws>`_: ``ckiplab/albert-base-chinese-ws``
+   * `ALBERT Base — Part-of-Speech Tagging <https://huggingface.co/ckiplab/albert-base-chinese-pos>`_: ``ckiplab/albert-base-chinese-pos``
+   * `ALBERT Base — Named-Entity Recognition <https://huggingface.co/ckiplab/albert-base-chinese-ner>`_: ``ckiplab/albert-base-chinese-ner``
+
+   * `BERT Base — Word Segmentation <https://huggingface.co/ckiplab/bert-base-chinese-ws>`_: ``ckiplab/bert-base-chinese-ws``
+   * `BERT Base — Part-of-Speech Tagging <https://huggingface.co/ckiplab/bert-base-chinese-pos>`_: ``ckiplab/bert-base-chinese-pos``
+   * `BERT Base — Named-Entity Recognition <https://huggingface.co/ckiplab/bert-base-chinese-ner>`_: ``ckiplab/bert-base-chinese-ner``
+
+Model Usage
+^^^^^^^^^^^
+
+| One may use our model directly from the 🤗/transformers library:
+| 您可直接透過 🤗/transformers 套件使用我們的模型
+
+
+.. code-block:: bash
+
+   pip install -U transformers
+
+| Please use BertTokenizerFast as tokenizer, and replace ``ckiplab/albert-tiny-chinese`` and ``ckiplab/albert-tiny-chinese-ws`` to any model you need in the following example.
+| 請使用內建的 BertTokenizerFast，並將以下範例中的 ``ckiplab/albert-tiny-chinese`` 與 ``ckiplab/albert-tiny-chinese-ws`` 替換成任何你要使用的模型名稱。
+
+.. code-block:: python
+
+   from transformers import (
+      BertTokenizerFast,
+      AutoModelForMaskedLM,
+      AutoModelForTokenClassification,
+   )
+
+   # language model
+   tokenizer = BertTokenizerFast.from_pretrained('bert-base-chinese')
+   model = AutoModelForMaskedLM.from_pretrained('ckiplab/albert-tiny-chinese')
+
+   # nlp task model
+   tokenizer = BertTokenizerFast.from_pretrained('bert-base-chinese')
+   model = AutoModelForTokenClassification.from_pretrained('ckiplab/albert-tiny-chinese-ws')
+
 Performance
 ^^^^^^^^^^^
 
-================================  =======  =========  ========
-Tool                              WS (F1)  POS (Acc)  NER (F1)
-================================  =======  =========  ========
-Ckip Transformers (level 3†)      97.60%   95.67%     81.18%
-Ckip Transformers (level 2†)      97.33%   95.30%     79.47%
-Ckip Transformers (level 1†)      96.66%   94.48%     71.17%
-CkipTagger‡                       97.33%   94.59%     77.87%
-Monpa§                            92.58%   --         --
-Jeiba‖                            81.18%   --         --
-================================  =======  =========  ========
+| The following is a performance comparison between our model and other models.
+| 以下是我們的模型與其他的模型之性能比較。
+
+================================  ===========  ========  ==========  =========
+Model                             Perplexity†  WS (F1)‡  POS (ACC)‡  NER (F1)‡
+================================  ===========  ========  ==========  =========
+ckiplab/albert-tiny-chinese        4.80        96.66%    94.48%      71.17%
+ckiplab/albert-base-chinese        2.65        97.33%    95.30%      79.47%
+ckiplab/bert-base-chinese          1.88        97.60%    95.67%      81.18%
+ckiplab/gpt2-base-chinese         14.40        --        --          --
+--------------------------------  -----------  --------  ----------  ---------
+
+--------------------------------  -----------  --------  ----------  ---------
+voidful/albert_chinese_tiny       74.93        --        --          --
+voidful/albert_chinese_base       22.34        --        --          --
+bert-base-chinese                  2.53        --        --          --
+================================  ===========  ========  ==========  =========
+
+| † Perplexity; the smaller the better.
+| † 混淆度；數字越小越好。
+| ‡ WS: word segmentation; POS: part-of-speech; NER: named-entity recognition; the larger the better.
+| ‡ WS: 斷詞；POS: 詞性標記；NER: 實體辨識；數字越大越好。
+
+NLP Tools
+---------
+
+| The package also provide the following NLP tools.
+| 我們的套件也提供了以下的自然語言處理工具。
+
+* (WS) Word Segmentation 斷詞
+* (POS) Part-of-Speech Tagging 詞性標記
+* (NER) Named Entity Recognition 實體辨識
 
 Installation
-------------
+^^^^^^^^^^^^
 
 ``pip install -U ckip-transformers``
 
@@ -105,22 +182,22 @@ Requirements:
 * `PyTorch <https://pytorch.org>`__ 1.1+
 * `HuggingFace Transformers <https://huggingface.co/transformers/>`__ 3.5+
 
-Usage
------
+NLP Tools Usage
+^^^^^^^^^^^^^^^
 
 See https://ckip-transformers.readthedocs.io/en/latest/_api/ckip_transformers.html for API details.
 
 The complete script of this example is https://github.com/ckiplab/ckip-transformers/blob/master/example/example.py.
 
 1. Import module
-^^^^^^^^^^^^^^^^
+""""""""""""""""
 
 .. code-block:: python
 
    from ckip_transformers.nlp import CkipWordSegmenter, CkipPosTagger, CkipNerChunker
 
 2. Load models
-^^^^^^^^^^^^^^
+""""""""""""""
 
 .. code-block:: python
 
@@ -130,7 +207,7 @@ The complete script of this example is https://github.com/ckiplab/ckip-transform
    ner_driver = CkipNerChunker()
 
 3. Run pipeline
-^^^^^^^^^^^^^^^
+"""""""""""""""
 
 - The input for word segmentation and named-entity recognition must be a list of sentences.
 - The input for part-of-speech tagging must be a list of list of words (the output of word segmentation).
@@ -150,7 +227,7 @@ The complete script of this example is https://github.com/ckiplab/ckip-transform
    ner = ner_driver(text)
 
 4. Show results
-^^^^^^^^^^^^^^^
+"""""""""""""""
 
 .. code-block:: python
 
@@ -193,33 +270,43 @@ The complete script of this example is https://github.com/ckiplab/ckip-transform
    … 你確定嗎… 不要再騙了……
    …(DASHCATEGORY)　 (WHITESPACE)　你(Nh)　確定(VK)　嗎(T)　…(DASHCATEGORY)　 (WHITESPACE)　不要(D)　再(D)　騙(VC)　了(Di)　…(DASHCATEGORY)　…(ETCCATEGORY)
 
-Pretrained Models
------------------
+Performance
+^^^^^^^^^^^
 
-One may also use our pretrained models with HuggingFace transformers library directly: https://huggingface.co/ckiplab/.
+| The following is a performance comparison between our tool and other tools.
+| 以下是我們的工具與其他的工具之性能比較。
 
-Pretrained Language Models
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+CKIP Transformers v.s. Monpa & Jeiba
+""""""""""""""""""""""""""""""""""""
 
-* `ALBERT Tiny <https://huggingface.co/ckiplab/albert-tiny-chinese>`_
-* `ALBERT Base <https://huggingface.co/ckiplab/albert-base-chinese>`_
-* `BERT Base <https://huggingface.co/ckiplab/bert-base-chinese>`_
-* `GPT2 Base <https://huggingface.co/ckiplab/gpt2-base-chinese>`_
+================================  ===========  =============  ===============  ============
+Tool                                WS (F1)      POS (Acc)      WS+POS (F1)      NER (F1)
+================================  ===========  =============  ===============  ============
+CKIP BERT Base                    **97.60%**   **95.67%**     **94.19%**       **81.18%**
+CKIP ALBERT Base                    97.33%       95.30%         93.52%           79.47%
+CKIP ALBERT Tiny                    96.66%       94.48%         92.25%           71.17%
+--------------------------------  -----------  -------------  ---------------  ------------
 
-NLP Task Models
-^^^^^^^^^^^^^^^
+--------------------------------  -----------  -------------  ---------------  ------------
+Monpa†                             92.58%       --             83.88%           21.51%
+Jeiba                              81.18%       --             --              --
+================================  ===========  =============  ===============  ============
 
-* `ALBERT Tiny — Word Segmentation <https://huggingface.co/ckiplab/albert-tiny-chinese-ws>`_
-* `ALBERT Tiny — Part-of-Speech Tagging <https://huggingface.co/ckiplab/albert-tiny-chinese-pos>`_
-* `ALBERT Tiny — Named-Entity Recognition <https://huggingface.co/ckiplab/albert-tiny-chinese-ner>`_
+| † Monpa provides only 3 types of tags in NER.
+| † Monpa 的實體辨識僅提供三種標記而已。
 
-* `ALBERT Base — Word Segmentation <https://huggingface.co/ckiplab/albert-base-chinese-ws>`_
-* `ALBERT Base — Part-of-Speech Tagging <https://huggingface.co/ckiplab/albert-base-chinese-pos>`_
-* `ALBERT Base — Named-Entity Recognition <https://huggingface.co/ckiplab/albert-base-chinese-ner>`_
+CKIP Transformers v.s. CkipTagger
+""""""""""""""""""""""""""""""""""""
 
-* `BERT Base — Word Segmentation <https://huggingface.co/ckiplab/bert-base-chinese-ws>`_
-* `BERT Base — Part-of-Speech Tagging <https://huggingface.co/ckiplab/bert-base-chinese-pos>`_
-* `BERT Base — Named-Entity Recognition <https://huggingface.co/ckiplab/bert-base-chinese-ner>`_
+| The following results are tested on a different dataset。
+| 以下實驗在另一個資料集測試。
+
+================================  ===========  =============  ===============  ============
+Tool                                WS (F1)      POS (Acc)      WS+POS (F1)      NER (F1)
+================================  ===========  =============  ===============  ============
+CKIP BERT Base                    **97.84%**     96.46%       **94.91%**         79.20%
+CkipTagger                          97.33%     **97.20%**       94.75%         **77.87%**
+================================  ===========  =============  ===============  ============
 
 License
 -------
