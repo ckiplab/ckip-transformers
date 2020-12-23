@@ -117,7 +117,7 @@ Model Usage
 
    pip install -U transformers
 
-| Please use BertTokenizerFast as tokenizer, and replace ``ckiplab/albert-tiny-chinese`` and ``ckiplab/albert-tiny-chinese-ws`` to any model you need in the following example.
+| Please use BertTokenizerFast as tokenizer, and replace ``ckiplab/albert-tiny-chinese`` and ``ckiplab/albert-tiny-chinese-ws`` by any model you need in the following example.
 | 請使用內建的 BertTokenizerFast，並將以下範例中的 ``ckiplab/albert-tiny-chinese`` 與 ``ckiplab/albert-tiny-chinese-ws`` 替換成任何你要使用的模型名稱。
 
 .. code-block:: python
@@ -140,7 +140,9 @@ Performance
 ^^^^^^^^^^^
 
 | The following is a performance comparison between our model and other models.
+| The results are tested on a traditional Chinese corpus.
 | 以下是我們的模型與其他的模型之性能比較。
+| 各個任務皆測試於繁體中文的測試集。
 
 ================================  ===========  ========  ==========  =========
 Model                             Perplexity†  WS (F1)‡  POS (ACC)‡  NER (F1)‡
@@ -208,9 +210,9 @@ NLP Tools Usage
 .. code-block:: python
 
    # Initialize drivers
-   ws_driver  = CkipWordSegmenter(level=1)
-   pos_driver = CkipPosTagger(level=1)
-   ner_driver = CkipNerChunker(level=1)
+   ws_driver  = CkipWordSegmenter(level=3)
+   pos_driver = CkipPosTagger(level=3)
+   ner_driver = CkipNerChunker(level=3)
 
 3. Run pipeline
 """""""""""""""
