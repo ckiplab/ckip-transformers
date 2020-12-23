@@ -89,6 +89,8 @@ class CkipTokenClassification(metaclass=ABCMeta):
     def __call__(self,
         input_text: Union[List[str], List[List[str]]],
         *,
+        use_delim: bool = False,
+        delim_set: Optional[str] = '，,。：:；;！!？?',
         batch_size: int = 256,
         max_length: Optional[int] = None,
         show_progress: bool = True,
@@ -99,7 +101,11 @@ class CkipTokenClassification(metaclass=ABCMeta):
         ----------
             input_text : ``List[str]`` or ``List[List[str]]``
                 The input sentences. Each sentence is a string or a list of string.
-            batch_size : ``int``, *optional*, defaults to 16
+            use_delim : ``bool``, *optional*, defaults to False
+                Segment sentence (internally) using ``delim_set``.
+            delim_set : `str`, *optional*, defaults to ``'，,。：:；;！!？?'``
+                Used for sentence segmentation if ``use_delim=True``.
+            batch_size : ``int``, *optional*, defaults to 256
                 The size of mini-batch.
             max_length : ``int``, *optional*
                 The maximum length of the sentence,
@@ -115,6 +121,13 @@ class CkipTokenClassification(metaclass=ABCMeta):
                f'({max_length} > {model_max_length}).'
         else:
             max_length = model_max_length
+
+        # Apply delimiter cut
+        delim_index = self._find_delim(
+            input_text=input_text,
+            use_delim=use_delim,
+            delim_set=delim_set,
+        )
 
         # Get worded input IDs
         if show_progress:
@@ -133,6 +146,7 @@ class CkipTokenClassification(metaclass=ABCMeta):
         ) = self._flatten_input_ids(
             input_ids_worded=input_ids_worded,
             max_length=max_length,
+            delim_index=delim_index,
         )
 
         # Pad and segment input IDs
@@ -181,9 +195,27 @@ class CkipTokenClassification(metaclass=ABCMeta):
         return logits, index_map
 
     @staticmethod
+    def _find_delim(*,
+        input_text,
+        use_delim,
+        delim_set,
+    ):
+        if not use_delim:
+            return set()
+
+        delim_index = set()
+        delim_set = set(delim_set)
+        for sent_idx, input_sent in enumerate(input_text):
+            for word_idx, input_word in enumerate(input_sent):
+                if input_word in delim_set:
+                    delim_index.add((sent_idx, word_idx,))
+        return delim_index
+
+    @staticmethod
     def _flatten_input_ids(*,
         input_ids_worded,
         max_length,
+        delim_index,
     ):
         input_ids = []
         index_map = []
@@ -191,8 +223,8 @@ class CkipTokenClassification(metaclass=ABCMeta):
         input_ids_sent = []
         index_map_sent = []
 
-        for input_ids_worded_sent in input_ids_worded:
-            for word_ids in input_ids_worded_sent:
+        for sent_idx, input_ids_worded_sent in enumerate(input_ids_worded):
+            for word_idx, word_ids in enumerate(input_ids_worded_sent):
                 word_length = len(word_ids)
 
                 if word_length == 0:
@@ -210,6 +242,10 @@ class CkipTokenClassification(metaclass=ABCMeta):
                     len(input_ids_sent),   # token index
                 ))
                 input_ids_sent += word_ids
+
+                if (sent_idx, word_idx,) in delim_index:
+                    input_ids.append(input_ids_sent)
+                    input_ids_sent = []
 
             # End of a sentence
             if input_ids_sent:

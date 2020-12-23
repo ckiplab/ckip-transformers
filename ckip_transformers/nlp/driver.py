@@ -43,6 +43,8 @@ class CkipWordSegmenter(CkipTokenClassification):
 
     def __init__(self,
         level: int = 3,
+        *,
+        use_delim: bool = False,
         **kwargs,
     ):
         model_name = kwargs.pop('model_name', self._get_model_name_from_level(level))
@@ -58,7 +60,11 @@ class CkipWordSegmenter(CkipTokenClassification):
         ----------
             input_text : ``List[str]``
                 The input sentences. Each sentence is a string.
-            batch_size : ``int``, *optional*, defaults to 16
+            use_delim : ``bool``, *optional*, defaults to False
+                Segment sentence (internally) using ``delim_set``.
+            delim_set : `str`, *optional*, defaults to ``'，,。：:；;！!？?'``
+                Used for sentence segmentation if ``use_delim=True``.
+            batch_size : ``int``, *optional*, defaults to 256
                 The size of mini-batch.
             max_length : ``int``, *optional*
                 The maximum length of the sentence,
@@ -134,6 +140,8 @@ class CkipPosTagger(CkipTokenClassification):
 
     def __call__(self,
         input_text: List[List[str]],
+        *,
+        use_delim: bool = True,
         **kwargs,
     ) -> List[List[str]]:
         """Call the driver.
@@ -142,7 +150,11 @@ class CkipPosTagger(CkipTokenClassification):
         ----------
             input_text : ``List[List[str]]``
                 The input sentences. Each sentence is a list of strings (words).
-            batch_size : ``int``, *optional*, defaults to 16
+            use_delim : ``bool``, *optional*, defaults to True
+                Segment sentence (internally) using ``delim_set``.
+            delim_set : `str`, *optional*, defaults to ``'，,。：:；;！!？?'``
+                Used for sentence segmentation if ``use_delim=True``.
+            batch_size : ``int``, *optional*, defaults to 256
                 The size of mini-batch.
             max_length : ``int``, *optional*
                 The maximum length of the sentence,
@@ -160,7 +172,7 @@ class CkipPosTagger(CkipTokenClassification):
         (
             logits,
             index_map,
-        ) = super().__call__(input_text, **kwargs)
+        ) = super().__call__(input_text, use_delim=use_delim, **kwargs)
 
         # Get labels
         id2label = self.model.config.id2label
@@ -201,6 +213,8 @@ class CkipNerChunker(CkipTokenClassification):
 
     def __init__(self,
         level: int = 3,
+        *,
+        use_delim: bool = False,
         **kwargs,
     ):
         model_name = kwargs.pop('model_name', self._get_model_name_from_level(level))
@@ -216,7 +230,11 @@ class CkipNerChunker(CkipTokenClassification):
         ----------
             input_text : ``List[str]``
                 The input sentences. Each sentence is a string or a list or string (words).
-            batch_size : ``int``, *optional*, defaults to 16
+            use_delim : ``bool``, *optional*, defaults to False
+                Segment sentence (internally) using ``delim_set``.
+            delim_set : `str`, *optional*, defaults to ``'，,。：:；;！!？?'``
+                Used for sentence segmentation if ``use_delim=True``.
+            batch_size : ``int``, *optional*, defaults to 256
                 The size of mini-batch.
             max_length : ``int``, *optional*
                 The maximum length of the sentence,

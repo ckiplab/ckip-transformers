@@ -86,7 +86,7 @@ Related Packages
 Models
 ------
 
-| One may also use our pretrained models with HuggingFace transformers library directly: https://huggingface.co/ckiplab/.
+| You may also use our pretrained models with HuggingFace transformers library directly: https://huggingface.co/ckiplab/.
 | 您可於 https://huggingface.co/ckiplab/ 下載預訓練的模型。
 
 - Language Models
@@ -109,16 +109,15 @@ Models
 Model Usage
 ^^^^^^^^^^^
 
-| One may use our model directly from the huggingface transformers library:
-| 您可直接透過 huggingface transformers 套件使用我們的模型
-
+| You may use our model directly from the HuggingFace's transformers library
+| 您可直接透過 HuggingFace's transformers 套件使用我們的模型
 
 .. code-block:: bash
 
    pip install -U transformers
 
 | Please use BertTokenizerFast as tokenizer, and replace ``ckiplab/albert-tiny-chinese`` and ``ckiplab/albert-tiny-chinese-ws`` by any model you need in the following example.
-| 請使用內建的 BertTokenizerFast，並將以下範例中的 ``ckiplab/albert-tiny-chinese`` 與 ``ckiplab/albert-tiny-chinese-ws`` 替換成任何你要使用的模型名稱。
+| 請使用內建的 BertTokenizerFast，並將以下範例中的 ``ckiplab/albert-tiny-chinese`` 與 ``ckiplab/albert-tiny-chinese-ws`` 替換成任何您要使用的模型名稱。
 
 .. code-block:: python
 
@@ -130,11 +129,35 @@ Model Usage
 
    # language model
    tokenizer = BertTokenizerFast.from_pretrained('bert-base-chinese')
-   model = AutoModelForMaskedLM.from_pretrained('ckiplab/albert-tiny-chinese')
+   model = AutoModelForMaskedLM.from_pretrained('ckiplab/albert-tiny-chinese') # or other models above
 
    # nlp task model
    tokenizer = BertTokenizerFast.from_pretrained('bert-base-chinese')
-   model = AutoModelForTokenClassification.from_pretrained('ckiplab/albert-tiny-chinese-ws')
+   model = AutoModelForTokenClassification.from_pretrained('ckiplab/albert-tiny-chinese-ws') # or other models above
+
+Model Fine-Tunning
+^^^^^^^^^^^^^^^^^^
+
+| To fine tunning our model on your own datasets, please refer the the following example from HuggingFace's transformers.
+| 您可參考以下的範例去微調我們的模型於您自己的資料集。
+
+- https://github.com/huggingface/transformers/tree/master/examples/language-modeling
+- https://github.com/huggingface/transformers/tree/master/examples/token-classification
+
+| Remember to set ``--tokenizer_name bert-base-chinese`` in order to use Chinese tokenizer.
+| 記得設置 ``--tokenizer_name bert-base-chinese`` 以正確的使用中文的 tokenizer。
+
+.. code-block:: bash
+
+   python run_mlm.py \
+      --model_name_or_path ckiplab/albert-tiny-chinese \ # or other models above
+      --tokenizer_name bert-base-chinese \
+      ...
+
+   python run_ner.py \
+      --model_name_or_path ckiplab/albert-tiny-chinese-ws \ # or other models above
+      --tokenizer_name bert-base-chinese \
+      ...
 
 Performance
 ^^^^^^^^^^^
@@ -204,8 +227,8 @@ NLP Tools Usage
 2. Load models
 """"""""""""""
 
-| We provide three levels (1–3) of drivers. Level 1 if the fastest, and level 3 is the most accurate.
-| 我們的工具分為三個等級（1—3）。等級一最快，等級三最精準。
+| We provide three levels (1–3) of drivers. Level 1 if the fastest, and level 3 (default) is the most accurate.
+| 我們的工具分為三個等級（1—3）。等級一最快，等級三（預設值）最精準。
 
 .. code-block:: python
 
@@ -213,6 +236,17 @@ NLP Tools Usage
    ws_driver  = CkipWordSegmenter(level=3)
    pos_driver = CkipPosTagger(level=3)
    ner_driver = CkipNerChunker(level=3)
+
+| To use GPU, one may specify device ID while initialize the drivers. Set to -1 (default) to disable GPU.
+| 可於宣告斷詞等工具時指定 device 以使用 GPU，設為 -1 （預設值）代表不使用 GPU。
+
+.. code-block:: python
+
+   # Use CPU
+   ws_driver = CkipWordSegmenter(device=-1)
+
+   # Use GPU:0
+   ws_driver = CkipWordSegmenter(device=0)
 
 3. Run pipeline
 """""""""""""""
@@ -228,13 +262,38 @@ NLP Tools Usage
    text = [
       '傅達仁今將執行安樂死，卻突然爆出自己20年前遭緯來體育台封殺，他不懂自己哪裡得罪到電視台。',
       '美國參議院針對今天總統布什所提名的勞工部長趙小蘭展開認可聽證會，預料她將會很順利通過參議院支持，成為該國有史以來第一位的華裔女性內閣成員。',
-      '… 你確定嗎… 不要再騙了……',
+      '空白 也是可以的～',
    ]
 
    # Run pipeline
    ws  = ws_driver(text)
    pos = pos_driver(ws)
    ner = ner_driver(text)
+
+| The POS driver will automatically segment the sentence internally using there characters ``'，,。：:；;！!？?'`` while running the model. (The output sentences will be concatenated back.) You may set ``delim_set`` to any characters you want.
+| You may set ``use_delim=False`` to disable this feature, or set ``use_delim=True`` in WS and NER driver to enable this feature.
+| 詞性標記工具會自動用 ``'，,。：:；;！!？?'`` 等字元在執行模型前切割句子（輸出的句子會自動接回）。可設定 ``delim_set`` 參數已使用別的字元做切割。
+| 另外可指定 ``use_delim=False`` 已停用此功能，或於斷詞、實體辨識時指定 ``use_delim=False`` 已啟用此功能。
+
+.. code-block:: python
+
+   # Enable sentence segmentation
+   ws  = ws_driver(text, use_delim=True)
+   ner = ner_driver(text, use_delim=True)
+
+   # Disable sentence segmentation
+   pos = pos_driver(ws, use_delim=False)
+
+   # Use new line characters and tabs for sentence segmentation
+   pos = pos_driver(ws, delim_set='\n\t')
+
+| You may specify ``batch_size`` and ``max_length`` to better utilize you machine resources.
+| 您亦可設置 ``batch_size`` 與 ``max_length`` 以更完美的利用您的機器資源。
+
+.. code-block:: python
+
+   # Sets the batch size and maximum sentence length
+   ws = ws_driver(text, batch_size=256, max_length=512)
 
 4. Show results
 """""""""""""""
@@ -277,8 +336,8 @@ NLP Tools Usage
    NerToken(word='第一', ner='ORDINAL', idx=(56, 58))
    NerToken(word='華裔', ner='NORP', idx=(60, 62))
 
-   … 你確定嗎… 不要再騙了……
-   …(DASHCATEGORY)　 (WHITESPACE)　你(Nh)　確定(VK)　嗎(T)　…(DASHCATEGORY)　 (WHITESPACE)　不要(D)　再(D)　騙(VC)　了(Di)　…(DASHCATEGORY)　…(ETCCATEGORY)
+   空白 也是可以的～
+   空白(VH)　 (WHITESPACE)　也(D)　是(SHI)　可以(VH)　的(T)　～(FW)
 
 Performance
 ^^^^^^^^^^^
@@ -308,7 +367,7 @@ Level  Tool                        WS (F1)      POS (Acc)      WS+POS (F1)      
 CKIP Transformers v.s. CkipTagger
 """"""""""""""""""""""""""""""""""""
 
-| The following results are tested on a different dataset。
+| The following results are tested on a different dataset.
 | 以下實驗在另一個資料集測試。
 
 =====  ========================  ===========  =============  ===============  ============
