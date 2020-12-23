@@ -56,7 +56,7 @@ PyPI
 Documentation
 ^^^^^^^^^^^^^
 
-| https://ckip-transformers.readthedocs.io/
+| https://ckip-transformers.readthedocs.io
 | |ReadTheDocs Home|
 
 .. |ReadTheDocs Home| image:: https://img.shields.io/website/https/ckip-transformers.readthedocs.io.svg?cacheSeconds=3600&up_message=online&down_message=offline
