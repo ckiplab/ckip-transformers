@@ -7,28 +7,28 @@ CKIP Transformers
 Git
 ^^^
 
-| https://github.com/emfomy/ckip-transformers
+| https://github.com/ckiplab/ckip-transformers
 | |GitHub Version| |GitHub License| |GitHub Release| |GitHub Issues|
 
-.. |GitHub Version| image:: https://img.shields.io/github/v/release/emfomy/ckip-transformers.svg?cacheSeconds=3600
-   :target: https://github.com/emfomy/ckip-transformers/releases
+.. |GitHub Version| image:: https://img.shields.io/github/v/release/ckiplab/ckip-transformers.svg?cacheSeconds=3600
+   :target: https://github.com/ckiplab/ckip-transformers/releases
 
-.. |GitHub License| image:: https://img.shields.io/github/license/emfomy/ckip-transformers.svg?cacheSeconds=3600
-   :target: https://github.com/emfomy/ckip-transformers/blob/master/LICENSE
+.. |GitHub License| image:: https://img.shields.io/github/license/ckiplab/ckip-transformers.svg?cacheSeconds=3600
+   :target: https://github.com/ckiplab/ckip-transformers/blob/master/LICENSE
 
-.. |GitHub Release| image:: https://img.shields.io/github/release-date/emfomy/ckip-transformers.svg?cacheSeconds=3600
+.. |GitHub Release| image:: https://img.shields.io/github/release-date/ckiplab/ckip-transformers.svg?cacheSeconds=3600
 
-.. |GitHub Downloads| image:: https://img.shields.io/github/downloads/emfomy/ckip-transformers/total.svg?cacheSeconds=3600
-   :target: https://github.com/emfomy/ckip-transformers/releases/latest
+.. |GitHub Downloads| image:: https://img.shields.io/github/downloads/ckiplab/ckip-transformers/total.svg?cacheSeconds=3600
+   :target: https://github.com/ckiplab/ckip-transformers/releases/latest
 
-.. |GitHub Issues| image:: https://img.shields.io/github/issues/emfomy/ckip-transformers.svg?cacheSeconds=3600
-   :target: https://github.com/emfomy/ckip-transformers/issues
+.. |GitHub Issues| image:: https://img.shields.io/github/issues/ckiplab/ckip-transformers.svg?cacheSeconds=3600
+   :target: https://github.com/ckiplab/ckip-transformers/issues
 
-.. |GitHub Forks| image:: https://img.shields.io/github/forks/emfomy/ckip-transformers.svg?style=social&label=Fork&cacheSeconds=3600
+.. |GitHub Forks| image:: https://img.shields.io/github/forks/ckiplab/ckip-transformers.svg?style=social&label=Fork&cacheSeconds=3600
 
-.. |GitHub Stars| image:: https://img.shields.io/github/stars/emfomy/ckip-transformers.svg?style=social&label=Star&cacheSeconds=3600
+.. |GitHub Stars| image:: https://img.shields.io/github/stars/ckiplab/ckip-transformers.svg?style=social&label=Star&cacheSeconds=3600
 
-.. |GitHub Watchers| image:: https://img.shields.io/github/watchers/emfomy/ckip-transformers.svg?style=social&label=Watch&cacheSeconds=3600
+.. |GitHub Watchers| image:: https://img.shields.io/github/watchers/ckiplab/ckip-transformers.svg?style=social&label=Watch&cacheSeconds=3600
 
 PyPI
 ^^^^
@@ -40,7 +40,7 @@ PyPI
    :target: https://pypi.org/project/ckip-transformers
 
 .. |PyPI License| image:: https://img.shields.io/pypi/l/ckip-transformers.svg?cacheSeconds=3600
-   :target: https://github.com/emfomy/ckip-transformers/blob/master/LICENSE
+   :target: https://github.com/ckiplab/ckip-transformers/blob/master/LICENSE
 
 .. |PyPI Downloads| image:: https://img.shields.io/pypi/dm/ckip-transformers.svg?cacheSeconds=3600
    :target: https://pypi.org/project/ckip-transformers#files
