@@ -4,7 +4,7 @@ TWINE = twine
 TOX = tox
 LINT = pylint --rcfile=./.pylintrc
 
-.PHONY: all check dist sdist test tox tox-v tox-report lint doc upload clean
+.PHONY: all check dist sdist test tox tox-v tox-vv tox-report lint doc upload clean
 
 all: dist check test
 
@@ -21,7 +21,7 @@ lint:
 check:
 	$(TWINE) check dist/*
 
-tox tox-v tox-report:
+tox tox-v tox-vv tox-report:
 	( cd test && make $@ )
 
 doc:
