@@ -11,7 +11,6 @@ __license__ = 'GPL-3.0'
 
 from typing import (
     List,
-    Optional,
 )
 
 import numpy as np
@@ -43,8 +42,6 @@ class CkipWordSegmenter(CkipTokenClassification):
 
     def __init__(self,
         level: int = 3,
-        *,
-        use_delim: bool = False,
         **kwargs,
     ):
         model_name = kwargs.pop('model_name', self._get_model_name_from_level(level))
@@ -52,6 +49,8 @@ class CkipWordSegmenter(CkipTokenClassification):
 
     def __call__(self,
         input_text: List[str],
+        *,
+        use_delim: bool = False,
         **kwargs,
     ) -> List[List[str]]:
         """Call the driver.
@@ -82,7 +81,7 @@ class CkipWordSegmenter(CkipTokenClassification):
         (
             logits,
             index_map,
-        ) = super().__call__(input_text, **kwargs)
+        ) = super().__call__(input_text, use_delim=use_delim, **kwargs)
 
         # Post-process results
         output_text = []
@@ -213,8 +212,6 @@ class CkipNerChunker(CkipTokenClassification):
 
     def __init__(self,
         level: int = 3,
-        *,
-        use_delim: bool = False,
         **kwargs,
     ):
         model_name = kwargs.pop('model_name', self._get_model_name_from_level(level))
@@ -222,6 +219,8 @@ class CkipNerChunker(CkipTokenClassification):
 
     def __call__(self,
         input_text: List[str],
+        *,
+        use_delim: bool = False,
         **kwargs,
     ) -> List[List[NerToken]]:
         """Call the driver.
@@ -252,7 +251,7 @@ class CkipNerChunker(CkipTokenClassification):
         (
             logits,
             index_map,
-        ) = super().__call__(input_text, **kwargs)
+        ) = super().__call__(input_text, use_delim=use_delim, **kwargs)
 
         # Get labels
         id2label = self.model.config.id2label
