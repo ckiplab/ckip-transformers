@@ -7,9 +7,8 @@ CKIP Transformers
 Git
 ^^^
 
-https://github.com/emfomy/ckip-transformers
-
-|GitHub Version| |GitHub License| |GitHub Release| |GitHub Issues|
+| https://github.com/emfomy/ckip-transformers
+| |GitHub Version| |GitHub License| |GitHub Release| |GitHub Issues|
 
 .. |GitHub Version| image:: https://img.shields.io/github/v/release/emfomy/ckip-transformers.svg?cacheSeconds=3600
    :target: https://github.com/emfomy/ckip-transformers/releases
@@ -34,9 +33,8 @@ https://github.com/emfomy/ckip-transformers
 PyPI
 ^^^^
 
-https://pypi.org/project/ckip-transformers
-
-|PyPI Version| |PyPI License| |PyPI Downloads| |PyPI Python| |PyPI Implementation| |PyPI Format| |PyPI Status|
+| https://pypi.org/project/ckip-transformers
+| |PyPI Version| |PyPI License| |PyPI Downloads| |PyPI Python| |PyPI Implementation| |PyPI Format| |PyPI Status|
 
 .. |PyPI Version| image:: https://img.shields.io/pypi/v/ckip-transformers.svg?cacheSeconds=3600
    :target: https://pypi.org/project/ckip-transformers
@@ -58,25 +56,32 @@ https://pypi.org/project/ckip-transformers
 Documentation
 ^^^^^^^^^^^^^
 
-https://ckip-transformers.readthedocs.io/
-
-|ReadTheDocs Home|
+| https://ckip-transformers.readthedocs.io/
+| |ReadTheDocs Home|
 
 .. |ReadTheDocs Home| image:: https://img.shields.io/website/https/ckip-transformers.readthedocs.io.svg?cacheSeconds=3600&up_message=online&down_message=offline
    :target: https://ckip-transformers.readthedocs.io
 
-Relative Demos / Packages
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Demo
+^^^^
 
-- `CKIP Transformer Online Demo <https://ckip.iis.sinica.edu.tw/service/transformers/>`_: The online demo of this package.
-- `CkipTagger <https://github.com/ckiplab/ckiptagger>`_: An alternative Chinese NLP library with using BiLSTM.
-- `CKIP CoreNLP Toolkit <https://github.com/ckiplab/ckipnlp>`_: A Chinese NLP library with more NLP tasks and utilities.
+| https://ckip.iis.sinica.edu.tw/service/transformers
+| |Transformers Demo|
+
+.. |Transformers Demo| image:: https://img.shields.io/website/https/ckip.iis.sinica.edu.tw/service/transformers.svg?cacheSeconds=3600&up_message=online&down_message=offline
+   :target: https://ckip.iis.sinica.edu.tw/service/transformers
 
 Contributers
 ^^^^^^^^^^^^
 
-* `Mu Yang <https://muyang.pro>`__ at `CKIP <https://ckip.iis.sinica.edu.tw>`__ (Author & Maintainer)
-* `Wei-Yun Ma <https://www.iis.sinica.edu.tw/pages/ma/>`__ at `CKIP <https://ckip.iis.sinica.edu.tw>`__ (Maintainer)
+* `Mu Yang <https://muyang.pro>`__ at `CKIP <https://ckip.iis.sinica.edu.tw>`__ (Author & Maintainer).
+* `Wei-Yun Ma <https://www.iis.sinica.edu.tw/pages/ma/>`__ at `CKIP <https://ckip.iis.sinica.edu.tw>`__ (Maintainer).
+
+Related Packages
+^^^^^^^^^^^^^^^^
+
+- `CkipTagger <https://github.com/ckiplab/ckiptagger>`_: An alternative Chinese NLP library with using BiLSTM.
+- `CKIP CoreNLP Toolkit <https://github.com/ckiplab/ckipnlp>`_: A Chinese NLP library with more NLP tasks and utilities.
 
 Models
 ------
@@ -85,22 +90,18 @@ Models
 | 您可於 https://huggingface.co/ckiplab/ 下載預訓練的模型。
 
 - Language Models
-
    * `ALBERT Tiny <https://huggingface.co/ckiplab/albert-tiny-chinese>`_: ``ckiplab/albert-tiny-chinese``
    * `ALBERT Base <https://huggingface.co/ckiplab/albert-base-chinese>`_: ``ckiplab/albert-base-chinese``
    * `BERT Base <https://huggingface.co/ckiplab/bert-base-chinese>`_: ``ckiplab/bert-base-chinese``
    * `GPT2 Base <https://huggingface.co/ckiplab/gpt2-base-chinese>`_: ``ckiplab/gpt2-base-chinese``
 
 - NLP Task Models
-
    * `ALBERT Tiny — Word Segmentation <https://huggingface.co/ckiplab/albert-tiny-chinese-ws>`_: ``ckiplab/albert-tiny-chinese-ws``
    * `ALBERT Tiny — Part-of-Speech Tagging <https://huggingface.co/ckiplab/albert-tiny-chinese-pos>`_: ``ckiplab/albert-tiny-chinese-pos``
    * `ALBERT Tiny — Named-Entity Recognition <https://huggingface.co/ckiplab/albert-tiny-chinese-ner>`_: ``ckiplab/albert-tiny-chinese-ner``
-
    * `ALBERT Base — Word Segmentation <https://huggingface.co/ckiplab/albert-base-chinese-ws>`_: ``ckiplab/albert-base-chinese-ws``
    * `ALBERT Base — Part-of-Speech Tagging <https://huggingface.co/ckiplab/albert-base-chinese-pos>`_: ``ckiplab/albert-base-chinese-pos``
    * `ALBERT Base — Named-Entity Recognition <https://huggingface.co/ckiplab/albert-base-chinese-ner>`_: ``ckiplab/albert-base-chinese-ner``
-
    * `BERT Base — Word Segmentation <https://huggingface.co/ckiplab/bert-base-chinese-ws>`_: ``ckiplab/bert-base-chinese-ws``
    * `BERT Base — Part-of-Speech Tagging <https://huggingface.co/ckiplab/bert-base-chinese-pos>`_: ``ckiplab/bert-base-chinese-pos``
    * `BERT Base — Named-Entity Recognition <https://huggingface.co/ckiplab/bert-base-chinese-ner>`_: ``ckiplab/bert-base-chinese-ner``
@@ -108,8 +109,8 @@ Models
 Model Usage
 ^^^^^^^^^^^
 
-| One may use our model directly from the 🤗/transformers library:
-| 您可直接透過 🤗/transformers 套件使用我們的模型
+| One may use our model directly from the huggingface transformers library:
+| 您可直接透過 huggingface transformers 套件使用我們的模型
 
 
 .. code-block:: bash
@@ -185,9 +186,11 @@ Requirements:
 NLP Tools Usage
 ^^^^^^^^^^^^^^^
 
-See https://ckip-transformers.readthedocs.io/en/latest/_api/ckip_transformers.html for API details.
+| See `here <../_api/ckip_transformers.html>`_ for API details.
+| 詳細的 API 請參見 `此處 <../_api/ckip_transformers.html>`_ 。
 
-The complete script of this example is https://github.com/ckiplab/ckip-transformers/blob/master/example/example.py.
+| The complete script of this example is https://github.com/ckiplab/ckip-transformers/blob/master/example/example.py.
+| 以下的範例的完整檔案可參見 https://github.com/ckiplab/ckip-transformers/blob/master/example/example.py 。
 
 1. Import module
 """"""""""""""""
@@ -199,18 +202,23 @@ The complete script of this example is https://github.com/ckiplab/ckip-transform
 2. Load models
 """"""""""""""
 
+| We provide three levels (1–3) of drivers. Level 1 if the fastest, and level 3 is the most accurate.
+| 我們的工具分為三個等級（1—3）。等級一最快，等級三最精準。
+
 .. code-block:: python
 
    # Initialize drivers
-   ws_driver  = CkipWordSegmenter()
-   pos_driver = CkipPosTagger()
-   ner_driver = CkipNerChunker()
+   ws_driver  = CkipWordSegmenter(level=1)
+   pos_driver = CkipPosTagger(level=1)
+   ner_driver = CkipNerChunker(level=1)
 
 3. Run pipeline
 """""""""""""""
 
-- The input for word segmentation and named-entity recognition must be a list of sentences.
-- The input for part-of-speech tagging must be a list of list of words (the output of word segmentation).
+| The input for word segmentation and named-entity recognition must be a list of sentences.
+| The input for part-of-speech tagging must be a list of list of words (the output of word segmentation).
+| 斷詞與實體辨識的輸入必須是 list of sentences。
+| 詞性標記的輸入必須是 list of list of words。
 
 .. code-block:: python
 
@@ -279,18 +287,18 @@ Performance
 CKIP Transformers v.s. Monpa & Jeiba
 """"""""""""""""""""""""""""""""""""
 
-================================  ===========  =============  ===============  ============
-Tool                                WS (F1)      POS (Acc)      WS+POS (F1)      NER (F1)
-================================  ===========  =============  ===============  ============
-CKIP BERT Base                    **97.60%**   **95.67%**     **94.19%**       **81.18%**
-CKIP ALBERT Base                    97.33%       95.30%         93.52%           79.47%
-CKIP ALBERT Tiny                    96.66%       94.48%         92.25%           71.17%
---------------------------------  -----------  -------------  ---------------  ------------
+=====  ========================  ===========  =============  ===============  ============
+Level  Tool                        WS (F1)      POS (Acc)      WS+POS (F1)      NER (F1)
+=====  ========================  ===========  =============  ===============  ============
+3      CKIP BERT Base            **97.60%**   **95.67%**     **94.19%**       **81.18%**
+2      CKIP ALBERT Base            97.33%       95.30%         93.52%           79.47%
+1      CKIP ALBERT Tiny            96.66%       94.48%         92.25%           71.17%
+-----  ------------------------  -----------  -------------  ---------------  ------------
 
---------------------------------  -----------  -------------  ---------------  ------------
-Monpa†                             92.58%       --             83.88%           21.51%
-Jeiba                              81.18%       --             --              --
-================================  ===========  =============  ===============  ============
+-----  ------------------------  -----------  -------------  ---------------  ------------
+--     Monpa†                     92.58%       --             83.88%           21.51%
+--     Jeiba                      81.18%       --             --              --
+=====  ========================  ===========  =============  ===============  ============
 
 | † Monpa provides only 3 types of tags in NER.
 | † Monpa 的實體辨識僅提供三種標記而已。
@@ -301,12 +309,12 @@ CKIP Transformers v.s. CkipTagger
 | The following results are tested on a different dataset。
 | 以下實驗在另一個資料集測試。
 
-================================  ===========  =============  ===============  ============
-Tool                                WS (F1)      POS (Acc)      WS+POS (F1)      NER (F1)
-================================  ===========  =============  ===============  ============
-CKIP BERT Base                    **97.84%**     96.46%       **94.91%**         79.20%
-CkipTagger                          97.33%     **97.20%**       94.75%         **77.87%**
-================================  ===========  =============  ===============  ============
+=====  ========================  ===========  =============  ===============  ============
+Level  Tool                        WS (F1)      POS (Acc)      WS+POS (F1)      NER (F1)
+=====  ========================  ===========  =============  ===============  ============
+3      CKIP BERT Base            **97.84%**     96.46%       **94.91%**         79.20%
+--     CkipTagger                  97.33%     **97.20%**       94.75%         **77.87%**
+=====  ========================  ===========  =============  ===============  ============
 
 License
 -------
