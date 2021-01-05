@@ -45,7 +45,7 @@ def main():
         install_requires=[
             'torch>=1.1.0',
             'tqdm>=4.27',
-            'transformers>=3.5.0,<4',
+            'transformers>=3.5.0',
         ],
         data_files=[],
     )
