@@ -1,5 +1,6 @@
 # Release TODO
 - change version number
+- make sure requirements.txt and test/requirements.txt matches setup.py.
 
 - >> make clean
 - >> make lint
@@ -10,6 +11,3 @@
 - merge to master branch
 - >> make clean
 - >> make upload
-
-# Requirements
-Make sure requirements.txt and test/requirements.txt matches setup.py.
