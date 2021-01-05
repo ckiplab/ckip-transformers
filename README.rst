@@ -138,7 +138,7 @@ Model Usage
 Model Fine-Tunning
 ^^^^^^^^^^^^^^^^^^
 
-| To fine tunning our model on your own datasets, please refer the the following example from HuggingFace's transformers.
+| To fine tunning our model on your own datasets, please refer to the following example from HuggingFace's transformers.
 | 您可參考以下的範例去微調我們的模型於您自己的資料集。
 
 - https://github.com/huggingface/transformers/tree/master/examples/language-modeling
@@ -186,6 +186,71 @@ bert-base-chinese                  2.53        --        --          --
 | † 混淆度；數字越小越好。
 | ‡ WS: word segmentation; POS: part-of-speech; NER: named-entity recognition; the larger the better.
 | ‡ WS: 斷詞；POS: 詞性標記；NER: 實體辨識；數字越大越好。
+
+Training Corpus
+^^^^^^^^^^^^^^^
+
+| The language models are trained on the ZhWiki and CNA datasets; the WS and POS tasks are trained on the ASBC datasets; the NER tasks are trained on the OntoNotes datasets.
+| 以上的語言模型訓練於 ZhWiki 與 CNA 資料集上；斷詞（WS）與詞性標記（POS）任務模型訓練於 ASBC 資料集上；實體辨識（NER）任務模型訓練於 OntoNotes 資料集上。
+
+* ZhWiki: https://dumps.wikimedia.org/zhwiki/
+   | Chinese Wikipedia text (20200801 dump), translated to Traditional using `OpenCC <https://github.com/BYVoid/OpenCC>`_.
+   | 中文維基的文章（20200801 版本），利用 `OpenCC <https://github.com/BYVoid/OpenCC>`_ 翻譯成繁體中文。
+* CNA: https://catalog.ldc.upenn.edu/LDC2011T13
+   | Chinese Gigaword Fifth Edition — CNA (Central News Agency part).
+   | 中文 Gigaword 第五版 — CNA（中央社）的部分.
+* ASBC: http://asbc.iis.sinica.edu.tw
+   | Academia Sinica Balanced Corpus of Modern Chinese version 4.
+   | 中央研究院漢語平衡語料庫第四版。
+* OntoNotes: https://catalog.ldc.upenn.edu/LDC2013T19
+   | OntoNotes Release 5.0, Chinese part, translated to Traditional using `OpenCC <https://github.com/BYVoid/OpenCC>`_.
+   | OntoNotes 第五版，中文部分，利用 `OpenCC <https://github.com/BYVoid/OpenCC>`_ 翻譯成繁體中文。
+
+| Here is a summary of each corpus.
+| 以下是各個資料集的一覽表。
+
+================  ================  ================  ================  ================
+Dataset           #Documents        #Lines            #Characters       Line Type
+================  ================  ================  ================  ================
+CNA               2,559,520         13,532,445        1,219,029,974     Paragraph
+ZhWiki            1,106,783         5,918,975         495,446,829       Paragraph
+ASBC              19,247            1,395,949         17,572,374        Clause
+OntoNotes         1,911             48,067            1,568,491         Sentence
+================  ================  ================  ================  ================
+
+| Here is the dataset split used for language models.
+| 以下是用於訓練語言模型的資料集切割。
+
+================  ================  ================  ================
+CNA+ZhWiki        #Documents        #Lines            #Characters
+================  ================  ================  ================
+Train             3,606,303         18,986,238        4,347,517,682
+Dev               30,000            148,077           32,888,978
+Test              30,000            151,241           35,216,818
+================  ================  ================  ================
+
+| Here is the dataset split used for word segmentation and part-of-speech tagging models.
+| 以下是用於訓練斷詞及詞性標記模型的資料集切割。
+
+================  ================  ================  ================  ================
+ASBC              #Documents        #Lines            #Words            #Characters
+================  ================  ================  ================  ================
+Train             15,247            1,183,260         9,480,899         14,724,250
+Dev               2,000             52,677            448,964           741,323
+Test              2,000             160,012           1,315,129         2,106,799
+================  ================  ================  ================  ================
+
+
+| Here is the dataset split used for word segmentation and named entity recognition models.
+| 以下是用於訓練實體辨識模型的資料集切割。
+
+================  ================  ================  ================  ================
+OntoNotes         #Documents        #Lines            #Characters       #Named-Entities
+================  ================  ================  ================  ================
+Train             1,511             43,362            1,367,658         68,947
+Dev               200               2,304             93,535            7,186
+Test              200               2,401             107,298           6,977
+================  ================  ================  ================  ================
 
 NLP Tools
 ---------
@@ -272,7 +337,7 @@ NLP Tools Usage
 
 | The POS driver will automatically segment the sentence internally using there characters ``'，,。：:；;！!？?'`` while running the model. (The output sentences will be concatenated back.) You may set ``delim_set`` to any characters you want.
 | You may set ``use_delim=False`` to disable this feature, or set ``use_delim=True`` in WS and NER driver to enable this feature.
-| 詞性標記工具會自動用 ``'，,。：:；;！!？?'`` 等字元在執行模型前切割句子（輸出的句子會自動接回）。可設定 ``delim_set`` 參數已使用別的字元做切割。
+| 詞性標記工具會自動用 ``'，,。：:；;！!？?'`` 等字元在執行模型前切割句子（輸出的句子會自動接回）。可設定 ``delim_set`` 參數使用別的字元做切割。
 | 另外可指定 ``use_delim=False`` 已停用此功能，或於斷詞、實體辨識時指定 ``use_delim=False`` 已啟用此功能。
 
 .. code-block:: python
@@ -373,8 +438,8 @@ CKIP Transformers v.s. CkipTagger
 =====  ========================  ===========  =============  ===============  ============
 Level  Tool                        WS (F1)      POS (Acc)      WS+POS (F1)      NER (F1)
 =====  ========================  ===========  =============  ===============  ============
-3      CKIP BERT Base            **97.84%**     96.46%       **94.91%**         79.20%
---     CkipTagger                  97.33%     **97.20%**       94.75%         **77.87%**
+3      CKIP BERT Base            **97.84%**     96.46%       **94.91%**       **79.20%**
+--     CkipTagger                  97.33%     **97.20%**       94.75%           77.87%
 =====  ========================  ===========  =============  ===============  ============
 
 License
