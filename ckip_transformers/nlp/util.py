@@ -185,7 +185,7 @@ class CkipTokenClassification(metaclass=ABCMeta):
                 batch = tuple(tensor.to(self.device) for tensor in batch)
                 (
                     batch_logits,
-                ) = self.model(**dict(zip(encoded_input.keys(), batch)))
+                ) = self.model(**dict(zip(encoded_input.keys(), batch)), return_dict=False)
                 batch_logits = batch_logits.cpu().numpy()[:, 1:, :]  # Remove [CLS]
                 logits.append(batch_logits)
 
