@@ -159,8 +159,8 @@ Model Fine-Tunning
       --tokenizer_name bert-base-chinese \
       ...
 
-Performance
-^^^^^^^^^^^
+Model Performance
+^^^^^^^^^^^^^^^^^
 
 | The following is a performance comparison between our model and other models.
 | The results are tested on a traditional Chinese corpus.
@@ -190,7 +190,7 @@ bert-base-chinese                  2.53        --        --          --
 Training Corpus
 ^^^^^^^^^^^^^^^
 
-| The language models are trained on the ZhWiki and CNA datasets; the WS and POS tasks are trained on the ASBC datasets; the NER tasks are trained on the OntoNotes datasets.
+| The language models are trained on the ZhWiki and CNA datasets; the WS and POS tasks are trained on the ASBC dataset; the NER tasks are trained on the OntoNotes dataset.
 | 以上的語言模型訓練於 ZhWiki 與 CNA 資料集上；斷詞（WS）與詞性標記（POS）任務模型訓練於 ASBC 資料集上；實體辨識（NER）任務模型訓練於 OntoNotes 資料集上。
 
 * ZhWiki: https://dumps.wikimedia.org/zhwiki/
@@ -203,7 +203,7 @@ Training Corpus
    | Academia Sinica Balanced Corpus of Modern Chinese version 4.
    | 中央研究院漢語平衡語料庫第四版。
 * OntoNotes: https://catalog.ldc.upenn.edu/LDC2013T19
-   | OntoNotes Release 5.0, Chinese part, translated to Traditional using `OpenCC <https://github.com/BYVoid/OpenCC>`_.
+   | OntoNotes release 5.0, Chinese part, translated to Traditional using `OpenCC <https://github.com/BYVoid/OpenCC>`_.
    | OntoNotes 第五版，中文部分，利用 `OpenCC <https://github.com/BYVoid/OpenCC>`_ 翻譯成繁體中文。
 
 | Here is a summary of each corpus.
@@ -404,8 +404,8 @@ NLP Tools Usage
    空白 也是可以的～
    空白(VH)　 (WHITESPACE)　也(D)　是(SHI)　可以(VH)　的(T)　～(FW)
 
-Performance
-^^^^^^^^^^^
+NLP Tools Performance
+^^^^^^^^^^^^^^^^^^^^^
 
 | The following is a performance comparison between our tool and other tools.
 | 以下是我們的工具與其他的工具之性能比較。
@@ -432,8 +432,8 @@ Level  Tool                        WS (F1)      POS (Acc)      WS+POS (F1)      
 CKIP Transformers v.s. CkipTagger
 """"""""""""""""""""""""""""""""""""
 
-| The following results are tested on a different dataset.
-| 以下實驗在另一個資料集測試。
+| The following results are tested on a different dataset.†
+| 以下實驗在另一個資料集測試。†
 
 =====  ========================  ===========  =============  ===============  ============
 Level  Tool                        WS (F1)      POS (Acc)      WS+POS (F1)      NER (F1)
@@ -441,6 +441,9 @@ Level  Tool                        WS (F1)      POS (Acc)      WS+POS (F1)      
 3      CKIP BERT Base            **97.84%**     96.46%       **94.91%**       **79.20%**
 --     CkipTagger                  97.33%     **97.20%**       94.75%           77.87%
 =====  ========================  ===========  =============  ===============  ============
+
+| † Here we retrained/tested our BERT model using the same dataset with CkipTagger.
+| † 我們重新訓練／測試我們的 BERT 模型於跟 CkipTagger 相同的資料集。
 
 License
 -------
