@@ -123,17 +123,12 @@ Model Usage
 
    from transformers import (
       BertTokenizerFast,
-      AutoModelForMaskedLM,
+      AutoModel,
       AutoModelForTokenClassification,
    )
 
-   # language model
    tokenizer = BertTokenizerFast.from_pretrained('bert-base-chinese')
-   model = AutoModelForMaskedLM.from_pretrained('ckiplab/albert-tiny-chinese') # or other models above
-
-   # nlp task model
-   tokenizer = BertTokenizerFast.from_pretrained('bert-base-chinese')
-   model = AutoModelForTokenClassification.from_pretrained('ckiplab/albert-tiny-chinese-ws') # or other models above
+   model = AutoModel.from_pretrained('ckiplab/albert-tiny-chinese') # or other models above
 
 Model Fine-Tunning
 ^^^^^^^^^^^^^^^^^^
