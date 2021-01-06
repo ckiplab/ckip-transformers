@@ -165,16 +165,16 @@ Model Performance
 ================================  ===========  ===========  ========  ==========  =========
 Model                             #Parameters  Perplexity†  WS (F1)‡  POS (ACC)‡  NER (F1)‡
 ================================  ===========  ===========  ========  ==========  =========
-ckiplab/albert-tiny-chinese         4,044,312   4.80        96.66%    94.48%      71.17%
-ckiplab/albert-base-chinese        10,077,192   2.65        97.33%    95.30%      79.47%
-ckiplab/bert-base-chinese         102,290,312   1.88        97.60%    95.67%      81.18%
-ckiplab/gpt2-base-chinese         102,068,736  14.40        --        --          --
+ckiplab/albert-tiny-chinese         4M          4.80        96.66%    94.48%      71.17%
+ckiplab/albert-base-chinese        10M          2.65        97.33%    95.30%      79.47%
+ckiplab/bert-base-chinese         102M          1.88        97.60%    95.67%      81.18%
+ckiplab/gpt2-base-chinese         102M         14.40        --        --          --
 --------------------------------  -----------  -----------  --------  ----------  ---------
 
 --------------------------------  -----------  -----------  --------  ----------  ---------
-voidful/albert_chinese_tiny         4,080,520  74.93        --        --          --
-voidful/albert_chinese_base        10,547,968  22.34        --        --          --
-bert-base-chinese                 102,267,648   2.53        --        --          --
+voidful/albert_chinese_tiny         4M         74.93        --        --          --
+voidful/albert_chinese_base        10M         22.34        --        --          --
+bert-base-chinese                 102M          2.53        --        --          --
 ================================  ===========  ===========  ========  ==========  =========
 
 | † Perplexity; the smaller the better.
