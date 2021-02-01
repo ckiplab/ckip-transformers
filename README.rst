@@ -124,12 +124,17 @@ Model Usage
    from transformers import (
       BertTokenizerFast,
       AutoModelForMaskedLM,
+      AutoModelForCausalLM,
       AutoModelForTokenClassification,
    )
 
-   # language model
+   # masked language model (ALBERT, BERT)
    tokenizer = BertTokenizerFast.from_pretrained('bert-base-chinese')
    model = AutoModelForMaskedLM.from_pretrained('ckiplab/albert-tiny-chinese') # or other models above
+
+   # casual language model (GPT2)
+   tokenizer = BertTokenizerFast.from_pretrained('bert-base-chinese')
+   model = AutoModelForCausalLM.from_pretrained('ckiplab/gpt2-base-chinese') # or other models above
 
    # nlp task model
    tokenizer = BertTokenizerFast.from_pretrained('bert-base-chinese')
@@ -167,20 +172,20 @@ Model Performance
 | 以下是我們的模型與其他的模型之性能比較。
 | 各個任務皆測試於繁體中文的測試集。
 
-================================  ===========  ========  ==========  =========
-Model                             Perplexity†  WS (F1)‡  POS (ACC)‡  NER (F1)‡
-================================  ===========  ========  ==========  =========
-ckiplab/albert-tiny-chinese        4.80        96.66%    94.48%      71.17%
-ckiplab/albert-base-chinese        2.65        97.33%    95.30%      79.47%
-ckiplab/bert-base-chinese          1.88        97.60%    95.67%      81.18%
-ckiplab/gpt2-base-chinese         14.40        --        --          --
---------------------------------  -----------  --------  ----------  ---------
+================================  ===========  ===========  ========  ==========  =========
+Model                             #Parameters  Perplexity†  WS (F1)‡  POS (ACC)‡  NER (F1)‡
+================================  ===========  ===========  ========  ==========  =========
+ckiplab/albert-tiny-chinese         4M          4.80        96.66%    94.48%      71.17%
+ckiplab/albert-base-chinese        10M          2.65        97.33%    95.30%      79.47%
+ckiplab/bert-base-chinese         102M          1.88        97.60%    95.67%      81.18%
+ckiplab/gpt2-base-chinese         102M         14.40        --        --          --
+--------------------------------  -----------  -----------  --------  ----------  ---------
 
---------------------------------  -----------  --------  ----------  ---------
-voidful/albert_chinese_tiny       74.93        --        --          --
-voidful/albert_chinese_base       22.34        --        --          --
-bert-base-chinese                  2.53        --        --          --
-================================  ===========  ========  ==========  =========
+--------------------------------  -----------  -----------  --------  ----------  ---------
+voidful/albert_chinese_tiny         4M         74.93        --        --          --
+voidful/albert_chinese_base        10M         22.34        --        --          --
+bert-base-chinese                 102M          2.53        --        --          --
+================================  ===========  ===========  ========  ==========  =========
 
 | † Perplexity; the smaller the better.
 | † 混淆度；數字越小越好。
@@ -197,10 +202,10 @@ Training Corpus
    | Chinese Wikipedia text (20200801 dump), translated to Traditional using `OpenCC <https://github.com/BYVoid/OpenCC>`_.
    | 中文維基的文章（20200801 版本），利用 `OpenCC <https://github.com/BYVoid/OpenCC>`_ 翻譯成繁體中文。
 * CNA: https://catalog.ldc.upenn.edu/LDC2011T13
-   | Chinese Gigaword Fifth Edition — CNA (Central News Agency part).
+   | Chinese Gigaword Fifth Edition — CNA (Central News Agency) part.
    | 中文 Gigaword 第五版 — CNA（中央社）的部分.
 * ASBC: http://asbc.iis.sinica.edu.tw
-   | Academia Sinica Balanced Corpus of Modern Chinese version 4.
+   | Academia Sinica Balanced Corpus of Modern Chinese release 4.0.
    | 中央研究院漢語平衡語料庫第四版。
 * OntoNotes: https://catalog.ldc.upenn.edu/LDC2013T19
    | OntoNotes release 5.0, Chinese part, translated to Traditional using `OpenCC <https://github.com/BYVoid/OpenCC>`_.
@@ -270,7 +275,7 @@ Installation
 Requirements:
 
 * `Python <https://www.python.org>`__ 3.6+
-* `PyTorch <https://pytorch.org>`__ 1.1+
+* `PyTorch <https://pytorch.org>`__ 1.5+
 * `HuggingFace Transformers <https://huggingface.co/transformers/>`__ 3.5+
 
 NLP Tools Usage
@@ -292,7 +297,7 @@ NLP Tools Usage
 2. Load models
 """"""""""""""
 
-| We provide three levels (1–3) of drivers. Level 1 if the fastest, and level 3 (default) is the most accurate.
+| We provide three levels (1–3) of drivers. Level 1 is the fastest, and level 3 (default) is the most accurate.
 | 我們的工具分為三個等級（1—3）。等級一最快，等級三（預設值）最精準。
 
 .. code-block:: python
