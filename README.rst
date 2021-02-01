@@ -275,7 +275,7 @@ Installation
 Requirements:
 
 * `Python <https://www.python.org>`__ 3.6+
-* `PyTorch <https://pytorch.org>`__ 1.1+
+* `PyTorch <https://pytorch.org>`__ 1.5+
 * `HuggingFace Transformers <https://huggingface.co/transformers/>`__ 3.5+
 
 NLP Tools Usage

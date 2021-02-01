@@ -43,7 +43,7 @@ def main():
         python_requires='>=3.6',
         packages=find_namespace_packages(include=['ckip_transformers', 'ckip_transformers.*',]),
         install_requires=[
-            'torch>=1.1.0',
+            'torch>=1.5.0',
             'tqdm>=4.27',
             'transformers>=3.5.0',
         ],
