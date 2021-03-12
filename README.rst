@@ -307,6 +307,16 @@ NLP Tools Usage
    pos_driver = CkipPosTagger(level=3)
    ner_driver = CkipNerChunker(level=3)
 
+| One may also load their own checkpoints using our drivers.
+| 也可以運用我們的工具於自己訓練的模型上。
+
+.. code-block:: python
+
+   # Initialize drivers with custom checkpoints
+   ws_driver  = CkipWordSegmenter(model_name='path_to_your_model')
+   pos_driver = CkipPosTagger(model_name='path_to_your_model')
+   ner_driver = CkipNerChunker(model_name='path_to_your_model')
+
 | To use GPU, one may specify device ID while initialize the drivers. Set to -1 (default) to disable GPU.
 | 可於宣告斷詞等工具時指定 device 以使用 GPU，設為 -1 （預設值）代表不使用 GPU。
 
