@@ -29,6 +29,8 @@ class CkipWordSegmenter(CkipTokenClassification):
         ----------
             level : ``str`` *optional*, defaults to 3, must be 1—3
                 The model level. The higher the level is, the more accurate and slower the model is.
+            model_name : ``str`` *optional*, overwrites **level**
+                The pretrained model name (e.g. ``'ckiplab/bert-base-chinese-ws'``).
             device : ``int``, *optional*, defaults to -1,
                 Device ordinal for CPU/GPU supports.
                 Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id.
@@ -119,6 +121,8 @@ class CkipPosTagger(CkipTokenClassification):
         ----------
             level : ``str`` *optional*, defaults to 3, must be 1—3
                 The model level. The higher the level is, the more accurate and slower the model is.
+            model_name : ``str`` *optional*, overwrites **level**
+                The pretrained model name (e.g. ``'ckiplab/bert-base-chinese-pos'``).
             device : ``int``, *optional*, defaults to -1,
                 Device ordinal for CPU/GPU supports.
                 Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id.
@@ -199,6 +203,8 @@ class CkipNerChunker(CkipTokenClassification):
         ----------
             level : ``str`` *optional*, defaults to 3, must be 1—3
                 The model level. The higher the level is, the more accurate and slower the model is.
+            model_name : ``str`` *optional*, overwrites **level**
+                The pretrained model name (e.g. ``'ckiplab/bert-base-chinese-ner'``).
             device : ``int``, *optional*, defaults to -1,
                 Device ordinal for CPU/GPU supports.
                 Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id.
