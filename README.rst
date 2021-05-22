@@ -203,7 +203,7 @@ Training Corpus
    | 中文維基的文章（20200801 版本），利用 `OpenCC <https://github.com/BYVoid/OpenCC>`_ 翻譯成繁體中文。
 * CNA: https://catalog.ldc.upenn.edu/LDC2011T13
    | Chinese Gigaword Fifth Edition — CNA (Central News Agency) part.
-   | 中文 Gigaword 第五版 — CNA（中央社）的部分.
+   | 中文 Gigaword 第五版 — CNA（中央社）的部分。
 * ASBC: http://asbc.iis.sinica.edu.tw
    | Academia Sinica Balanced Corpus of Modern Chinese release 4.0.
    | 中央研究院漢語平衡語料庫第四版。
@@ -437,8 +437,8 @@ Level  Tool                        WS (F1)      POS (Acc)      WS+POS (F1)      
 -----  ------------------------  -----------  -------------  ---------------  ------------
 
 -----  ------------------------  -----------  -------------  ---------------  ------------
---     Monpa†                     92.58%       --             83.88%           21.51%
---     Jeiba                      81.18%       --             --              --
+--     Monpa†                      92.58%       --             83.88%           --
+--     Jeiba                       81.18%       --             --               --
 =====  ========================  ===========  =============  ===============  ============
 
 | † Monpa provides only 3 types of tags in NER.
