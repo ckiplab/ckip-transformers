@@ -146,8 +146,9 @@ Model Fine-Tunning
 | To fine tunning our model on your own datasets, please refer to the following example from HuggingFace's transformers.
 | 您可參考以下的範例去微調我們的模型於您自己的資料集。
 
-- https://github.com/huggingface/transformers/tree/master/examples/language-modeling
-- https://github.com/huggingface/transformers/tree/master/examples/token-classification
+- https://github.com/huggingface/transformers/tree/master/examples
+- https://github.com/huggingface/transformers/tree/master/examples/pytorch/language-modeling
+- https://github.com/huggingface/transformers/tree/master/examples/pytorch/token-classification
 
 | Remember to set ``--tokenizer_name bert-base-chinese`` in order to use Chinese tokenizer.
 | 記得設置 ``--tokenizer_name bert-base-chinese`` 以正確的使用中文的 tokenizer。
