@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding:utf-8 -*-
-
 """
 This module implements the CKIP Transformers NLP drivers.
 """
@@ -10,8 +9,7 @@ __copyright__ = '2020 CKIP Lab'
 __license__ = 'GPL-3.0'
 
 from typing import (
-    List,
-)
+    List, )
 
 import numpy as np
 
@@ -21,6 +19,7 @@ from .util import (
 )
 
 ################################################################################################################################
+
 
 class CkipWordSegmenter(CkipTokenClassification):
     """The word segmentation driver.
@@ -42,14 +41,17 @@ class CkipWordSegmenter(CkipTokenClassification):
         3: 'ckiplab/bert-base-chinese-ws',
     }
 
-    def __init__(self,
+    def __init__(
+        self,
         level: int = 3,
         **kwargs,
     ):
-        model_name = kwargs.pop('model_name', self._get_model_name_from_level(level))
+        model_name = kwargs.pop('model_name',
+                                self._get_model_name_from_level(level))
         super().__init__(model_name=model_name, **kwargs)
 
-    def __call__(self,
+    def __call__(
+        self,
         input_text: List[str],
         *,
         use_delim: bool = False,
@@ -112,7 +114,9 @@ class CkipWordSegmenter(CkipTokenClassification):
 
         return output_text
 
+
 ################################################################################################################################
+
 
 class CkipPosTagger(CkipTokenClassification):
     """The part-of-speech tagging driver.
@@ -134,14 +138,17 @@ class CkipPosTagger(CkipTokenClassification):
         3: 'ckiplab/bert-base-chinese-pos',
     }
 
-    def __init__(self,
+    def __init__(
+        self,
         level: int = 3,
         **kwargs,
     ):
-        model_name = kwargs.pop('model_name', self._get_model_name_from_level(level))
+        model_name = kwargs.pop('model_name',
+                                self._get_model_name_from_level(level))
         super().__init__(model_name=model_name, **kwargs)
 
-    def __call__(self,
+    def __call__(
+        self,
         input_text: List[List[str]],
         *,
         use_delim: bool = True,
@@ -194,7 +201,9 @@ class CkipPosTagger(CkipTokenClassification):
 
         return output_text
 
+
 ################################################################################################################################
+
 
 class CkipNerChunker(CkipTokenClassification):
     """The named-entity recognition driver.
@@ -216,14 +225,17 @@ class CkipNerChunker(CkipTokenClassification):
         3: 'ckiplab/bert-base-chinese-ner',
     }
 
-    def __init__(self,
+    def __init__(
+        self,
         level: int = 3,
         **kwargs,
     ):
-        model_name = kwargs.pop('model_name', self._get_model_name_from_level(level))
+        model_name = kwargs.pop('model_name',
+                                self._get_model_name_from_level(level))
         super().__init__(model_name=model_name, **kwargs)
 
-    def __call__(self,
+    def __call__(
+        self,
         input_text: List[str],
         *,
         use_delim: bool = False,
@@ -269,7 +281,10 @@ class CkipNerChunker(CkipTokenClassification):
             entity_word = None
             entity_ner = None
             entity_idx0 = None
-            for index_char, (input_char, logits_index,) in enumerate(zip(*sent_data)):
+            for index_char, (
+                    input_char,
+                    logits_index,
+            ) in enumerate(zip(*sent_data)):
                 if logits_index is None:
                     label = 'O'
                 else:
@@ -282,11 +297,15 @@ class CkipNerChunker(CkipTokenClassification):
                 bioes, ner = label.split('-')
 
                 if bioes == 'S':
-                    output_sent.append(NerToken(
-                        word = input_char,
-                        ner  = ner,
-                        idx  = (index_char, index_char+len(input_char),),
-                    ))
+                    output_sent.append(
+                        NerToken(
+                            word=input_char,
+                            ner=ner,
+                            idx=(
+                                index_char,
+                                index_char + len(input_char),
+                            ),
+                        ))
                     entity_ner = None
                 elif bioes == 'B':
                     entity_word = input_char
@@ -300,11 +319,15 @@ class CkipNerChunker(CkipTokenClassification):
                 elif bioes == 'E':
                     if entity_ner == ner:
                         entity_word += input_char
-                        output_sent.append(NerToken(
-                            word = entity_word,
-                            ner  = entity_ner,
-                            idx  = (entity_idx0, index_char+len(input_char),),
-                        ))
+                        output_sent.append(
+                            NerToken(
+                                word=entity_word,
+                                ner=entity_ner,
+                                idx=(
+                                    entity_idx0,
+                                    index_char + len(input_char),
+                                ),
+                            ))
                     entity_ner = None
 
             output_text.append(output_sent)
