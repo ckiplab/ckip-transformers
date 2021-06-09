@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding:utf-8 -*-
+
 """
 This module implements the utilities for CKIP Transformers NLP drivers.
 """
@@ -7,6 +8,7 @@ This module implements the utilities for CKIP Transformers NLP drivers.
 __author__ = 'Mu Yang <http://muyang.pro>'
 __copyright__ = '2020 CKIP Lab'
 __license__ = 'GPL-3.0'
+
 
 from abc import (
     ABCMeta,
@@ -39,7 +41,6 @@ from transformers import (
 
 ################################################################################################################################
 
-
 class CkipTokenClassification(metaclass=ABCMeta):
     """The base class for token classification task.
 
@@ -53,19 +54,17 @@ class CkipTokenClassification(metaclass=ABCMeta):
                 Device ordinal for CPU/GPU supports.
                 Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id.
         """
-    def __init__(
-        self,
+
+    def __init__(self,
         model_name: str,
         tokenizer_name: Optional[str] = None,
         *,
         device: int = -1,
     ):
-        self.model = AutoModelForTokenClassification.from_pretrained(
-            model_name)
-        self.tokenizer = BertTokenizerFast.from_pretrained(tokenizer_name
-                                                           or model_name)
+        self.model = AutoModelForTokenClassification.from_pretrained(model_name)
+        self.tokenizer = BertTokenizerFast.from_pretrained(tokenizer_name or model_name)
 
-        self.device = torch.device('cpu' if device < 0 else f'cuda:{device}')  # pylint: disable=no-member
+        self.device = torch.device('cpu' if device < 0 else f'cuda:{device}') # pylint: disable=no-member
         self.model.to(self.device)
 
     ########################################################################################################################
@@ -75,8 +74,7 @@ class CkipTokenClassification(metaclass=ABCMeta):
     def _model_names(cls):
         return NotImplemented  # pragma: no cover
 
-    def _get_model_name_from_level(
-        self,
+    def _get_model_name_from_level(self,
         level: int,
     ):
         try:
@@ -88,8 +86,7 @@ class CkipTokenClassification(metaclass=ABCMeta):
 
     ########################################################################################################################
 
-    def __call__(
-        self,
+    def __call__(self,
         input_text: Union[List[str], List[List[str]]],
         *,
         use_delim: bool = False,
@@ -136,10 +133,11 @@ class CkipTokenClassification(metaclass=ABCMeta):
         if show_progress:
             input_text = tqdm(input_text, desc='Tokenization')
 
-        input_ids_worded = [[
-            self.tokenizer.convert_tokens_to_ids(list(input_word))
-            for input_word in input_sent
-        ] for input_sent in input_text]
+        input_ids_worded = [
+            [
+                self.tokenizer.convert_tokens_to_ids(list(input_word)) for input_word in input_sent
+            ] for input_sent in input_text
+        ]
 
         # Flatten input IDs
         (
@@ -155,7 +153,9 @@ class CkipTokenClassification(metaclass=ABCMeta):
         (
             input_ids,
             attention_mask,
-        ) = self._pad_input_ids(input_ids=input_ids, )
+        ) = self._pad_input_ids(
+            input_ids=input_ids,
+        )
 
         # Convert input format
         encoded_input = BatchEncoding(
@@ -183,11 +183,10 @@ class CkipTokenClassification(metaclass=ABCMeta):
         with torch.no_grad():
             for batch in dataloader:
                 batch = tuple(tensor.to(self.device) for tensor in batch)
-                (batch_logits, ) = self.model(**dict(
-                    zip(encoded_input.keys(), batch)),
-                                              return_dict=False)
-                batch_logits = batch_logits.cpu().numpy(
-                )[:, 1:, :]  # Remove [CLS]
+                (
+                    batch_logits,
+                ) = self.model(**dict(zip(encoded_input.keys(), batch)), return_dict=False)
+                batch_logits = batch_logits.cpu().numpy()[:, 1:, :]  # Remove [CLS]
                 logits.append(batch_logits)
 
         # Call model
@@ -196,8 +195,7 @@ class CkipTokenClassification(metaclass=ABCMeta):
         return logits, index_map
 
     @staticmethod
-    def _find_delim(
-        *,
+    def _find_delim(*,
         input_text,
         use_delim,
         delim_set,
@@ -210,15 +208,11 @@ class CkipTokenClassification(metaclass=ABCMeta):
         for sent_idx, input_sent in enumerate(input_text):
             for word_idx, input_word in enumerate(input_sent):
                 if input_word in delim_set:
-                    delim_index.add((
-                        sent_idx,
-                        word_idx,
-                    ))
+                    delim_index.add((sent_idx, word_idx,))
         return delim_index
 
     @staticmethod
-    def _flatten_input_ids(
-        *,
+    def _flatten_input_ids(*,
         input_ids_worded,
         max_length,
         delim_index,
@@ -245,14 +239,11 @@ class CkipTokenClassification(metaclass=ABCMeta):
                 # Insert tokens
                 index_map_sent.append((
                     len(input_ids),  # line index
-                    len(input_ids_sent),  # token index
+                    len(input_ids_sent),   # token index
                 ))
                 input_ids_sent += word_ids
 
-                if (
-                        sent_idx,
-                        word_idx,
-                ) in delim_index:
+                if (sent_idx, word_idx,) in delim_index:
                     input_ids.append(input_ids_sent)
                     input_ids_sent = []
 
@@ -265,9 +256,7 @@ class CkipTokenClassification(metaclass=ABCMeta):
 
         return input_ids, index_map
 
-    def _pad_input_ids(
-        self,
-        *,
+    def _pad_input_ids(self, *,
         input_ids,
     ):
         max_length = max(map(len, input_ids))
@@ -277,24 +266,22 @@ class CkipTokenClassification(metaclass=ABCMeta):
         for input_ids_sent in input_ids:
             token_count = len(input_ids_sent)
             pad_count = max_length - token_count
-            padded_input_ids.append([self.tokenizer.cls_token_id] +
-                                    input_ids_sent +
-                                    [self.tokenizer.sep_token_id] +
-                                    [self.tokenizer.pad_token_id] * pad_count)
-            attention_mask.append([1] *
-                                  (token_count + 2) +  # [CLS] & input & [SEP]
-                                  [0] * pad_count  # [PAD]s
-                                  )
+            padded_input_ids.append(
+                [self.tokenizer.cls_token_id] +
+                input_ids_sent +
+                [self.tokenizer.sep_token_id] +
+                [self.tokenizer.pad_token_id] * pad_count
+            )
+            attention_mask.append(
+                [1] * (token_count+2) +  # [CLS] & input & [SEP]
+                [0] * pad_count          # [PAD]s
+            )
         return padded_input_ids, attention_mask
-
 
 ################################################################################################################################
 
-
 class NerToken(NamedTuple):
     """A named-entity recognition token."""
-    word: str  #: ``str``, the token word.
-    ner: str  #: ``str``, the NER-tag.
-    idx: Tuple[
-        int,
-        int]  #: ``Tuple[int, int]``, the starting / ending index in the sentence.
+    word: str             #: ``str``, the token word.
+    ner: str              #: ``str``, the NER-tag.
+    idx: Tuple[int, int]  #: ``Tuple[int, int]``, the starting / ending index in the sentence.
