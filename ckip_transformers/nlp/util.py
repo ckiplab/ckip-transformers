@@ -135,8 +135,7 @@ class CkipTokenClassification(metaclass=ABCMeta):
 
         input_ids_worded = [
             [
-                self.tokenizer.convert_tokens_to_ids(list(input_word))
-                for input_word in input_sent
+                self.tokenizer.convert_tokens_to_ids(list(input_word)) for input_word in input_sent
             ] for input_sent in input_text
         ]
 
@@ -209,7 +208,7 @@ class CkipTokenClassification(metaclass=ABCMeta):
         for sent_idx, input_sent in enumerate(input_text):
             for word_idx, input_word in enumerate(input_sent):
                 if input_word in delim_set:
-                    delim_index.add((sent_idx, word_idx))
+                    delim_index.add((sent_idx, word_idx,))
         return delim_index
 
     @staticmethod
@@ -244,7 +243,7 @@ class CkipTokenClassification(metaclass=ABCMeta):
                 ))
                 input_ids_sent += word_ids
 
-                if sent_idx, word_idx in delim_index:
+                if (sent_idx, word_idx,) in delim_index:
                     input_ids.append(input_ids_sent)
                     input_ids_sent = []
 
@@ -267,13 +266,13 @@ class CkipTokenClassification(metaclass=ABCMeta):
         for input_ids_sent in input_ids:
             token_count = len(input_ids_sent)
             pad_count = max_length - token_count
-            padded_input_ids.append( \
+            padded_input_ids.append(
                 [self.tokenizer.cls_token_id] +
                 input_ids_sent +
                 [self.tokenizer.sep_token_id] +
                 [self.tokenizer.pad_token_id] * pad_count
             )
-            attention_mask.append( \
+            attention_mask.append(
                 [1] * (token_count+2) +  # [CLS] & input & [SEP]
                 [0] * pad_count          # [PAD]s
             )
