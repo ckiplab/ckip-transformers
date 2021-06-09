@@ -329,7 +329,7 @@ NLP Tools Usage
    # Use GPU:0
    ws_driver = CkipWordSegmenter(device=0)
 
-1. Run pipeline
+3. Run pipeline
 """""""""""""""
 
 | The input for word segmentation and named-entity recognition must be a list of sentences.
@@ -376,7 +376,7 @@ NLP Tools Usage
    # Sets the batch size and maximum sentence length
    ws = ws_driver(text, batch_size=256, max_length=512)
 
-1. Show results
+4. Show results
 """""""""""""""
 
 .. code-block:: python
