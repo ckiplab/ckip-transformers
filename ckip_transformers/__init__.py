@@ -5,14 +5,14 @@
 The CKIP Transformers.
 """
 
-__author_name__ = 'Mu Yang'
-__author_email__ = 'emfomy@gmail.com'
-__copyright__ = '2020 CKIP Lab'
+__author_name__ = "Mu Yang"
+__author_email__ = "emfomy@gmail.com"
+__copyright__ = "2020 CKIP Lab"
 
-__title__ = 'CKIP Transformers'
-__version__ = '0.2.5'
-__description__ = 'CKIP Transformers'
-__license__ = 'GPL-3.0'
+__title__ = "CKIP Transformers"
+__version__ = "0.2.6"
+__description__ = "CKIP Transformers"
+__license__ = "GPL-3.0"
 
-__url__ = 'https://ckip-transformers.readthedocs.io'
-__download_url__ = __url__+'/tarball/'+__version__
+__url__ = "https://ckip-transformers.readthedocs.io"
+__download_url__ = __url__ + "/tarball/" + __version__
