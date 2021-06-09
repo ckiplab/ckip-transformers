@@ -5,9 +5,9 @@
 This module provides the CKIP Transformers NLP drivers.
 """
 
-__author__ = 'Mu Yang <http://muyang.pro>'
-__copyright__ = '2020 CKIP Lab'
-__license__ = 'GPL-3.0'
+__author__ = "Mu Yang <http://muyang.pro>"
+__copyright__ = "2020 CKIP Lab"
+__license__ = "GPL-3.0"
 
 from .driver import (
     CkipWordSegmenter,

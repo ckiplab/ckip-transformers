@@ -5,9 +5,9 @@
 This module implements the CKIP Transformers NLP drivers.
 """
 
-__author__ = 'Mu Yang <http://muyang.pro>'
-__copyright__ = '2020 CKIP Lab'
-__license__ = 'GPL-3.0'
+__author__ = "Mu Yang <http://muyang.pro>"
+__copyright__ = "2020 CKIP Lab"
+__license__ = "GPL-3.0"
 
 from typing import (
     List,
@@ -22,34 +22,37 @@ from .util import (
 
 ################################################################################################################################
 
+
 class CkipWordSegmenter(CkipTokenClassification):
     """The word segmentation driver.
 
-        Parameters
-        ----------
-            level : ``str`` *optional*, defaults to 3, must be 1—3
-                The model level. The higher the level is, the more accurate and slower the model is.
-            model_name : ``str`` *optional*, overwrites **level**
-                The pretrained model name (e.g. ``'ckiplab/bert-base-chinese-ws'``).
-            device : ``int``, *optional*, defaults to -1,
-                Device ordinal for CPU/GPU supports.
-                Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id.
+    Parameters
+    ----------
+        level : ``str`` *optional*, defaults to 3, must be 1—3
+            The model level. The higher the level is, the more accurate and slower the model is.
+        model_name : ``str`` *optional*, overwrites **level**
+            The pretrained model name (e.g. ``'ckiplab/bert-base-chinese-ws'``).
+        device : ``int``, *optional*, defaults to -1,
+            Device ordinal for CPU/GPU supports.
+            Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id.
     """
 
     _model_names = {
-        1: 'ckiplab/albert-tiny-chinese-ws',
-        2: 'ckiplab/albert-base-chinese-ws',
-        3: 'ckiplab/bert-base-chinese-ws',
+        1: "ckiplab/albert-tiny-chinese-ws",
+        2: "ckiplab/albert-base-chinese-ws",
+        3: "ckiplab/bert-base-chinese-ws",
     }
 
-    def __init__(self,
+    def __init__(
+        self,
         level: int = 3,
         **kwargs,
     ):
-        model_name = kwargs.pop('model_name', self._get_model_name_from_level(level))
+        model_name = kwargs.pop("model_name", self._get_model_name_from_level(level))
         super().__init__(model_name=model_name, **kwargs)
 
-    def __call__(self,
+    def __call__(
+        self,
         input_text: List[str],
         *,
         use_delim: bool = False,
@@ -89,13 +92,13 @@ class CkipWordSegmenter(CkipTokenClassification):
         output_text = []
         for sent_data in zip(input_text, index_map):
             output_sent = []
-            word = ''
+            word = ""
             for input_char, logits_index in zip(*sent_data):
                 if logits_index is None:
                     if word:
                         output_sent.append(word)
                     output_sent.append(input_char)
-                    word = ''
+                    word = ""
                 else:
                     logits_b, logits_i = logits[logits_index]
 
@@ -112,36 +115,40 @@ class CkipWordSegmenter(CkipTokenClassification):
 
         return output_text
 
+
 ################################################################################################################################
+
 
 class CkipPosTagger(CkipTokenClassification):
     """The part-of-speech tagging driver.
 
-        Parameters
-        ----------
-            level : ``str`` *optional*, defaults to 3, must be 1—3
-                The model level. The higher the level is, the more accurate and slower the model is.
-            model_name : ``str`` *optional*, overwrites **level**
-                The pretrained model name (e.g. ``'ckiplab/bert-base-chinese-pos'``).
-            device : ``int``, *optional*, defaults to -1,
-                Device ordinal for CPU/GPU supports.
-                Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id.
+    Parameters
+    ----------
+        level : ``str`` *optional*, defaults to 3, must be 1—3
+            The model level. The higher the level is, the more accurate and slower the model is.
+        model_name : ``str`` *optional*, overwrites **level**
+            The pretrained model name (e.g. ``'ckiplab/bert-base-chinese-pos'``).
+        device : ``int``, *optional*, defaults to -1,
+            Device ordinal for CPU/GPU supports.
+            Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id.
     """
 
     _model_names = {
-        1: 'ckiplab/albert-tiny-chinese-pos',
-        2: 'ckiplab/albert-base-chinese-pos',
-        3: 'ckiplab/bert-base-chinese-pos',
+        1: "ckiplab/albert-tiny-chinese-pos",
+        2: "ckiplab/albert-base-chinese-pos",
+        3: "ckiplab/bert-base-chinese-pos",
     }
 
-    def __init__(self,
+    def __init__(
+        self,
         level: int = 3,
         **kwargs,
     ):
-        model_name = kwargs.pop('model_name', self._get_model_name_from_level(level))
+        model_name = kwargs.pop("model_name", self._get_model_name_from_level(level))
         super().__init__(model_name=model_name, **kwargs)
 
-    def __call__(self,
+    def __call__(
+        self,
         input_text: List[List[str]],
         *,
         use_delim: bool = True,
@@ -186,7 +193,7 @@ class CkipPosTagger(CkipTokenClassification):
             output_sent = []
             for input_char, logits_index in zip(*sent_data):
                 if logits_index is None or input_char.isspace():
-                    label = 'WHITESPACE'
+                    label = "WHITESPACE"
                 else:
                     label = id2label[np.argmax(logits[logits_index])]
                 output_sent.append(label)
@@ -194,36 +201,40 @@ class CkipPosTagger(CkipTokenClassification):
 
         return output_text
 
+
 ################################################################################################################################
+
 
 class CkipNerChunker(CkipTokenClassification):
     """The named-entity recognition driver.
 
-        Parameters
-        ----------
-            level : ``str`` *optional*, defaults to 3, must be 1—3
-                The model level. The higher the level is, the more accurate and slower the model is.
-            model_name : ``str`` *optional*, overwrites **level**
-                The pretrained model name (e.g. ``'ckiplab/bert-base-chinese-ner'``).
-            device : ``int``, *optional*, defaults to -1,
-                Device ordinal for CPU/GPU supports.
-                Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id.
+    Parameters
+    ----------
+        level : ``str`` *optional*, defaults to 3, must be 1—3
+            The model level. The higher the level is, the more accurate and slower the model is.
+        model_name : ``str`` *optional*, overwrites **level**
+            The pretrained model name (e.g. ``'ckiplab/bert-base-chinese-ner'``).
+        device : ``int``, *optional*, defaults to -1,
+            Device ordinal for CPU/GPU supports.
+            Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id.
     """
 
     _model_names = {
-        1: 'ckiplab/albert-tiny-chinese-ner',
-        2: 'ckiplab/albert-base-chinese-ner',
-        3: 'ckiplab/bert-base-chinese-ner',
+        1: "ckiplab/albert-tiny-chinese-ner",
+        2: "ckiplab/albert-base-chinese-ner",
+        3: "ckiplab/bert-base-chinese-ner",
     }
 
-    def __init__(self,
+    def __init__(
+        self,
         level: int = 3,
         **kwargs,
     ):
-        model_name = kwargs.pop('model_name', self._get_model_name_from_level(level))
+        model_name = kwargs.pop("model_name", self._get_model_name_from_level(level))
         super().__init__(model_name=model_name, **kwargs)
 
-    def __call__(self,
+    def __call__(
+        self,
         input_text: List[str],
         *,
         use_delim: bool = False,
@@ -269,42 +280,55 @@ class CkipNerChunker(CkipTokenClassification):
             entity_word = None
             entity_ner = None
             entity_idx0 = None
-            for index_char, (input_char, logits_index,) in enumerate(zip(*sent_data)):
+            for index_char, (
+                input_char,
+                logits_index,
+            ) in enumerate(zip(*sent_data)):
                 if logits_index is None:
-                    label = 'O'
+                    label = "O"
                 else:
                     label = id2label[np.argmax(logits[logits_index])]
 
-                if label == 'O':
+                if label == "O":
                     entity_ner = None
                     continue
 
-                bioes, ner = label.split('-')
+                bioes, ner = label.split("-")
 
-                if bioes == 'S':
-                    output_sent.append(NerToken(
-                        word = input_char,
-                        ner  = ner,
-                        idx  = (index_char, index_char+len(input_char),),
-                    ))
+                if bioes == "S":
+                    output_sent.append(
+                        NerToken(
+                            word=input_char,
+                            ner=ner,
+                            idx=(
+                                index_char,
+                                index_char + len(input_char),
+                            ),
+                        )
+                    )
                     entity_ner = None
-                elif bioes == 'B':
+                elif bioes == "B":
                     entity_word = input_char
                     entity_ner = ner
                     entity_idx0 = index_char
-                elif bioes == 'I':
+                elif bioes == "I":
                     if entity_ner == ner:
                         entity_word += input_char
                     else:
                         entity_ner = None
-                elif bioes == 'E':
+                elif bioes == "E":
                     if entity_ner == ner:
                         entity_word += input_char
-                        output_sent.append(NerToken(
-                            word = entity_word,
-                            ner  = entity_ner,
-                            idx  = (entity_idx0, index_char+len(input_char),),
-                        ))
+                        output_sent.append(
+                            NerToken(
+                                word=entity_word,
+                                ner=entity_ner,
+                                idx=(
+                                    entity_idx0,
+                                    index_char + len(input_char),
+                                ),
+                            )
+                        )
                     entity_ner = None
 
             output_text.append(output_sent)
