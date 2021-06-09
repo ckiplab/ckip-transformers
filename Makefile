@@ -3,20 +3,24 @@ RM = rm -rf
 TWINE = twine
 TOX = tox
 LINT = pylint --rcfile=./.pylintrc
+FORMAT = $(PY) -m black --color --diff
 
-.PHONY: all check dist sdist test tox tox-v tox-vv tox-report lint doc upload clean
+.PHONY: all check dist sdist test tox tox-v tox-vv tox-report lint format doc upload clean
 
 all: dist check test
 
 dist: sdist bdist_wheel
 
-test: tox lint
+test: tox format lint
 
 sdist bdist_wheel:
 	$(PY) setup.py $@
 
 lint:
 	$(LINT) ckip_transformers
+
+format:
+	$(FORMAT) ckip_transformers
 
 check:
 	$(TWINE) check dist/*
