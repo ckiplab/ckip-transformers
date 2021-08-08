@@ -98,6 +98,7 @@ class CkipTokenClassification(metaclass=ABCMeta):
         batch_size: int = 256,
         max_length: Optional[int] = None,
         show_progress: bool = True,
+        pin_memory: bool = True,
     ):
         """Call the driver.
 
@@ -114,8 +115,11 @@ class CkipTokenClassification(metaclass=ABCMeta):
             max_length : ``int``, *optional*
                 The maximum length of the sentence,
                 must not longer then the maximum sequence length for this model (i.e. ``tokenizer.model_max_length``).
-            show_progress : ``int``, *optional*, defaults to True
+            show_progress : ``bool``, *optional*, defaults to True
                 Show progress bar.
+            pin_memory : ``bool``, *optional*, defaults to True
+                Pin memory in order to accelerate the speed of data transfer to the GPU. This option is
+                incompatible with multiprocessing.
         """
 
         model_max_length = self.tokenizer.model_max_length - 2  # Add [CLS] and [SEP]
@@ -170,7 +174,7 @@ class CkipTokenClassification(metaclass=ABCMeta):
             batch_size=batch_size,
             shuffle=False,
             drop_last=False,
-            pin_memory=True,
+            pin_memory=pin_memory,
         )
         if show_progress:
             dataloader = tqdm(dataloader, desc="Inference")
