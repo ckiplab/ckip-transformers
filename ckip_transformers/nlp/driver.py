@@ -75,6 +75,9 @@ class CkipWordSegmenter(CkipTokenClassification):
                 must not longer then the maximum sequence length for this model (i.e. ``tokenizer.model_max_length``).
             show_progress : ``int``, *optional*, defaults to True
                 Show progress bar.
+            pin_memory : ``bool``, *optional*, defaults to True
+                Pin memory in order to accelerate the speed of data transfer to the GPU. This option is
+                incompatible with multiprocessing.
 
         Returns
         -------
@@ -171,6 +174,9 @@ class CkipPosTagger(CkipTokenClassification):
                 must not longer then the maximum sequence length for this model (i.e. ``tokenizer.model_max_length``).
             show_progress : ``int``, *optional*, defaults to True
                 Show progress bar.
+            pin_memory : ``bool``, *optional*, defaults to True
+                Pin memory in order to accelerate the speed of data transfer to the GPU. This option is
+                incompatible with multiprocessing.
 
         Returns
         -------
@@ -257,6 +263,9 @@ class CkipNerChunker(CkipTokenClassification):
                 must not longer then the maximum sequence length for this model (i.e. ``tokenizer.model_max_length``).
             show_progress : ``int``, *optional*, defaults to True
                 Show progress bar.
+            pin_memory : ``bool``, *optional*, defaults to True
+                Pin memory in order to accelerate the speed of data transfer to the GPU. This option is
+                incompatible with multiprocessing.
 
         Returns
         -------
