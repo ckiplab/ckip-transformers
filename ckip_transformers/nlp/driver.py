@@ -78,7 +78,7 @@ class CkipWordSegmenter(CkipTokenClassification):
 
         Returns
         -------
-            ``List[List[NerToken]]``
+            ``List[List[str]]``
                 A list of list of words (``str``).
         """
 
@@ -174,7 +174,7 @@ class CkipPosTagger(CkipTokenClassification):
 
         Returns
         -------
-            ``List[List[NerToken]]``
+            ``List[List[str]]``
                 A list of list of POS tags (``str``).
         """
 
