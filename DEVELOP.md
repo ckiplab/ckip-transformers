@@ -3,6 +3,7 @@
 - make sure requirements.txt and test/requirements.txt matches setup.py.
 
 - >> make clean
+- >> make format
 - >> make lint
 - >> make doc
 - >> make tox
