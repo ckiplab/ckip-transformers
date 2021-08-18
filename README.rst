@@ -304,7 +304,7 @@ NLP Tools Usage
 .. code-block:: python
 
    # Initialize drivers
-   ws_driver = CkipWordSegmenter(level=3)
+   ws_driver  = CkipWordSegmenter(level=3)
    pos_driver = CkipPosTagger(level=3)
    ner_driver = CkipNerChunker(level=3)
 
@@ -354,7 +354,7 @@ NLP Tools Usage
 | The POS driver will automatically segment the sentence internally using there characters ``'，,。：:；;！!？?'`` while running the model. (The output sentences will be concatenated back.) You may set ``delim_set`` to any characters you want.
 | You may set ``use_delim=False`` to disable this feature, or set ``use_delim=True`` in WS and NER driver to enable this feature.
 | 詞性標記工具會自動用 ``'，,。：:；;！!？?'`` 等字元在執行模型前切割句子（輸出的句子會自動接回）。可設定 ``delim_set`` 參數使用別的字元做切割。
-| 另外可指定 ``use_delim=False`` 已停用此功能，或於斷詞、實體辨識時指定 ``use_delim=False`` 已啟用此功能。
+| 另外可指定 ``use_delim=False`` 已停用此功能，或於斷詞、實體辨識時指定 ``use_delim=True`` 已啟用此功能。
 
 .. code-block:: python
 

@@ -51,7 +51,7 @@ class CkipTokenClassification(metaclass=ABCMeta):
             The pretrained model name (e.g. ``'ckiplab/bert-base-chinese-ws'``).
         tokenizer_name : ``str``, *optional*, defaults to **model_name**
             The pretrained tokenizer name (e.g. ``'bert-base-chinese'``).
-        device : ``int``, *optional*, defaults to -1,
+        device : ``int``, *optional*, defaults to -1
             Device ordinal for CPU/GPU supports.
             Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id.
     """

@@ -32,7 +32,7 @@ class CkipWordSegmenter(CkipTokenClassification):
             The model level. The higher the level is, the more accurate and slower the model is.
         model_name : ``str`` *optional*, overwrites **level**
             The pretrained model name (e.g. ``'ckiplab/bert-base-chinese-ws'``).
-        device : ``int``, *optional*, defaults to -1,
+        device : ``int``, *optional*, defaults to -1
             Device ordinal for CPU/GPU supports.
             Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id.
     """
@@ -131,7 +131,7 @@ class CkipPosTagger(CkipTokenClassification):
             The model level. The higher the level is, the more accurate and slower the model is.
         model_name : ``str`` *optional*, overwrites **level**
             The pretrained model name (e.g. ``'ckiplab/bert-base-chinese-pos'``).
-        device : ``int``, *optional*, defaults to -1,
+        device : ``int``, *optional*, defaults to -1
             Device ordinal for CPU/GPU supports.
             Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id.
     """
@@ -220,7 +220,7 @@ class CkipNerChunker(CkipTokenClassification):
             The model level. The higher the level is, the more accurate and slower the model is.
         model_name : ``str`` *optional*, overwrites **level**
             The pretrained model name (e.g. ``'ckiplab/bert-base-chinese-ner'``).
-        device : ``int``, *optional*, defaults to -1,
+        device : ``int``, *optional*, defaults to -1
             Device ordinal for CPU/GPU supports.
             Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id.
     """
@@ -251,7 +251,7 @@ class CkipNerChunker(CkipTokenClassification):
         Parameters
         ----------
             input_text : ``List[str]``
-                The input sentences. Each sentence is a string or a list or string (words).
+                The input sentences. Each sentence is a string.
             use_delim : ``bool``, *optional*, defaults to False
                 Segment sentence (internally) using ``delim_set``.
             delim_set : `str`, *optional*, defaults to ``'，,。：:；;！!？?'``
