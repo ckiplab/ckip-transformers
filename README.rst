@@ -374,7 +374,7 @@ NLP Tools Usage
 .. code-block:: python
 
    # Sets the batch size and maximum sentence length
-   ws = ws_driver(text, batch_size=256, max_length=512)
+   ws = ws_driver(text, batch_size=256, max_length=128)
 
 4. Show results
 """""""""""""""
