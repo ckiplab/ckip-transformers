@@ -1,26 +1,28 @@
 /* header */
 
 h1 {
-	font-size: 250%;
+  font-size: 250%;
 
-	display: inline-block;
-	border-bottom: 3px solid #2980b9;
+  display: inline-block;
+  border-bottom: 3px solid #2980b9;
 }
 
 /* content */
 
 .rst-content p.rubric {
-	font-size: 125%;
+  font-size: 125%;
 }
 
 .rst-content table.docutils th p {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }
 
-.rst-content tt.literal, .rst-content tt.literal, .rst-content code.literal {
-	color: #0057A9;
+.rst-content tt.literal,
+.rst-content tt.literal,
+.rst-content code.literal {
+  color: #0057a9;
 }
 
 .wy-nav-content {
-	max-width: 1280px;
+  max-width: 1280px;
 }

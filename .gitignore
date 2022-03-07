@@ -1,5 +1,9 @@
-venv
+.venv
 activate
+
+# Docs
+docs/_api/
+docs/_build/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -70,9 +74,6 @@ instance/
 
 # Scrapy stuff:
 .scrapy
-
-# Sphinx documentation
-docs/_build/
 
 # PyBuilder
 target/
