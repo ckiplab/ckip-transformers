@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*-
 
 __author__ = "Mu Yang <http://muyang.pro>"
-__copyright__ = "2020 CKIP Lab"
+__copyright__ = "2021 CKIP Lab"
 __license__ = "GPL-3.0"
 
 from _base import *

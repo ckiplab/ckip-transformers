@@ -6,7 +6,7 @@ This module implements the utilities for CKIP Transformers NLP drivers.
 """
 
 __author__ = "Mu Yang <http://muyang.pro>"
-__copyright__ = "2020 CKIP Lab"
+__copyright__ = "2021 CKIP Lab"
 __license__ = "GPL-3.0"
 
 
