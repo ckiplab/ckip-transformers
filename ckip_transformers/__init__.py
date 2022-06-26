@@ -10,7 +10,7 @@ __author_email__ = "emfomy@gmail.com"
 __copyright__ = "2021 CKIP Lab"
 
 __title__ = "CKIP Transformers"
-__version__ = "0.3.0"
+__version__ = "0.3.1"
 __description__ = "CKIP Transformers"
 __license__ = "GPL-3.0"
 
