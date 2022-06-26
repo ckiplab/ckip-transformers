@@ -28,7 +28,7 @@ class CkipWordSegmenter(CkipTokenClassification):
 
     Parameters
     ----------
-        model_type : ``str`` *optional*, defaults to "bert-base".
+        model : ``str`` *optional*, defaults to "bert-base".
             The pretrained model name provided by CKIP Transformers.
         model_name : ``str`` *optional*, overwrites **model**
             The custom pretrained model name (e.g. ``'ckiplab/bert-base-chinese-ws'``).
@@ -128,7 +128,7 @@ class CkipPosTagger(CkipTokenClassification):
 
     Parameters
     ----------
-        model_type : ``str`` *optional*, defaults to "bert-base".
+        model : ``str`` *optional*, defaults to "bert-base".
             The pretrained model name provided by CKIP Transformers.
         model_name : ``str`` *optional*, overwrites **model**
             The custom pretrained model name (e.g. ``'ckiplab/bert-base-chinese-pos'``).
@@ -218,7 +218,7 @@ class CkipNerChunker(CkipTokenClassification):
 
     Parameters
     ----------
-        model_type : ``str`` *optional*, defaults to "bert-base".
+        model : ``str`` *optional*, defaults to "bert-base".
             The pretrained model name provided by CKIP Transformers.
         model_name : ``str`` *optional*, overwrites **model**
             The custom pretrained model name (e.g. ``'ckiplab/bert-base-chinese-ner'``).
