@@ -228,10 +228,10 @@ class CkipNerChunker(CkipTokenClassification):
     """
 
     _model_names = {
-        "albert-tiny": "ckiplab/albert-tiny-chinese-pos",
-        "albert-base": "ckiplab/albert-base-chinese-pos",
-        "bert-tiny": "ckiplab/bert-tiny-chinese-pos",
-        "bert-base": "ckiplab/bert-base-chinese-pos",
+        "albert-tiny": "ckiplab/albert-tiny-chinese-ner",
+        "albert-base": "ckiplab/albert-base-chinese-ner",
+        "bert-tiny": "ckiplab/bert-tiny-chinese-ner",
+        "bert-base": "ckiplab/bert-base-chinese-ner",
     }
 
     def __init__(
