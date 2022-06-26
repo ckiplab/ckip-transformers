@@ -177,14 +177,15 @@ Model Performance
 Model                             #Parameters  Perplexity†  WS (F1)‡  POS (ACC)‡  NER (F1)‡
 ================================  ===========  ===========  ========  ==========  =========
 ckiplab/albert-tiny-chinese         4M          4.80        96.66%    94.48%      71.17%
-ckiplab/albert-base-chinese        10M          2.65        97.33%    95.30%      79.47%
+ckiplab/albert-base-chinese        11M          2.65        97.33%    95.30%      79.47%
+ckiplab/bert-tiny-chinese          12M          8.07        96.98%    95.11%      74.21%
 ckiplab/bert-base-chinese         102M          1.88        97.60%    95.67%      81.18%
-ckiplab/gpt2-base-chinese         102M         14.40        --        --          --
+ckiplab/gpt2-base-chinese         102M          8.36        --        --          --
 --------------------------------  -----------  -----------  --------  ----------  ---------
 
 --------------------------------  -----------  -----------  --------  ----------  ---------
 voidful/albert_chinese_tiny         4M         74.93        --        --          --
-voidful/albert_chinese_base        10M         22.34        --        --          --
+voidful/albert_chinese_base        11M         22.34        --        --          --
 bert-base-chinese                 102M          2.53        --        --          --
 ================================  ===========  ===========  ========  ==========  =========
 
@@ -434,6 +435,7 @@ Tool                        WS (F1)      POS (Acc)      WS+POS (F1)      NER (F1
 ========================  ===========  =============  ===============  ============
 CKIP BERT Base            **97.60%**   **95.67%**     **94.19%**       **81.18%**
 CKIP ALBERT Base            97.33%       95.30%         93.52%           79.47%
+CKIP BERT Tiny              96.98%       95.08%         93.13%           74.20%
 CKIP ALBERT Tiny            96.66%       94.48%         92.25%           71.17%
 ------------------------  -----------  -------------  ---------------  ------------
 
@@ -466,7 +468,7 @@ License
 
 |GPL-3.0|
 
-Copyright (c) 2020 `CKIP Lab <https://ckip.iis.sinica.edu.tw>`__ under the `GPL-3.0 License <https://www.gnu.org/licenses/gpl-3.0.html>`__.
+Copyright (c) 2021 `CKIP Lab <https://ckip.iis.sinica.edu.tw>`__ under the `GPL-3.0 License <https://www.gnu.org/licenses/gpl-3.0.html>`__.
 
 .. |GPL-3.0| image:: https://www.gnu.org/graphics/gplv3-with-text-136x68.png
    :target: https://www.gnu.org/licenses/gpl-3.0.html
