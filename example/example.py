@@ -12,11 +12,11 @@ def main():
 
     # Initialize drivers
     print("Initializing drivers ... WS")
-    ws_driver = CkipWordSegmenter(level=3)
+    ws_driver = CkipWordSegmenter(model="bert-base")
     print("Initializing drivers ... POS")
-    pos_driver = CkipPosTagger(level=3)
+    pos_driver = CkipPosTagger(model="bert-base")
     print("Initializing drivers ... NER")
-    ner_driver = CkipNerChunker(level=3)
+    ner_driver = CkipNerChunker(model="bert-base")
     print("Initializing drivers ... done")
     print()
 

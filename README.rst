@@ -298,15 +298,15 @@ NLP Tools Usage
 2. Load models
 """"""""""""""
 
-| We provide three levels (1–3) of drivers. Level 1 is the fastest, and level 3 (default) is the most accurate.
-| 我們的工具分為三個等級（1—3）。等級一最快，等級三（預設值）最精準。
+| We provide several pretrained models for the NLP tools.
+| 我們提供了一些適用於自然語言工具的預訓練的模型。
 
 .. code-block:: python
 
    # Initialize drivers
-   ws_driver  = CkipWordSegmenter(level=3)
-   pos_driver = CkipPosTagger(level=3)
-   ner_driver = CkipNerChunker(level=3)
+   ws_driver  = CkipWordSegmenter(model="bert-base")
+   pos_driver = CkipPosTagger(model="bert-base")
+   ner_driver = CkipNerChunker(model="bert-base")
 
 | One may also load their own checkpoints using our drivers.
 | 也可以運用我們的工具於自己訓練的模型上。
@@ -429,18 +429,18 @@ NLP Tools Performance
 CKIP Transformers v.s. Monpa & Jeiba
 """"""""""""""""""""""""""""""""""""
 
-=====  ========================  ===========  =============  ===============  ============
-Level  Tool                        WS (F1)      POS (Acc)      WS+POS (F1)      NER (F1)
-=====  ========================  ===========  =============  ===============  ============
-3      CKIP BERT Base            **97.60%**   **95.67%**     **94.19%**       **81.18%**
-2      CKIP ALBERT Base            97.33%       95.30%         93.52%           79.47%
-1      CKIP ALBERT Tiny            96.66%       94.48%         92.25%           71.17%
------  ------------------------  -----------  -------------  ---------------  ------------
+========================  ===========  =============  ===============  ============
+Tool                        WS (F1)      POS (Acc)      WS+POS (F1)      NER (F1)
+========================  ===========  =============  ===============  ============
+CKIP BERT Base            **97.60%**   **95.67%**     **94.19%**       **81.18%**
+CKIP ALBERT Base            97.33%       95.30%         93.52%           79.47%
+CKIP ALBERT Tiny            96.66%       94.48%         92.25%           71.17%
+------------------------  -----------  -------------  ---------------  ------------
 
------  ------------------------  -----------  -------------  ---------------  ------------
---     Monpa†                      92.58%       --             83.88%           --
---     Jeiba                       81.18%       --             --               --
-=====  ========================  ===========  =============  ===============  ============
+------------------------  -----------  -------------  ---------------  ------------
+Monpa†                      92.58%       --             83.88%           --
+Jeiba                       81.18%       --             --               --
+========================  ===========  =============  ===============  ============
 
 | † Monpa provides only 3 types of tags in NER.
 | † Monpa 的實體辨識僅提供三種標記而已。
@@ -451,12 +451,12 @@ CKIP Transformers v.s. CkipTagger
 | The following results are tested on a different dataset.†
 | 以下實驗在另一個資料集測試。†
 
-=====  ========================  ===========  =============  ===============  ============
-Level  Tool                        WS (F1)      POS (Acc)      WS+POS (F1)      NER (F1)
-=====  ========================  ===========  =============  ===============  ============
-3      CKIP BERT Base            **97.84%**     96.46%       **94.91%**       **79.20%**
---     CkipTagger                  97.33%     **97.20%**       94.75%           77.87%
-=====  ========================  ===========  =============  ===============  ============
+========================  ===========  =============  ===============  ============
+Tool                        WS (F1)      POS (Acc)      WS+POS (F1)      NER (F1)
+========================  ===========  =============  ===============  ============
+CKIP BERT Base            **97.84%**     96.46%       **94.91%**       **79.20%**
+CkipTagger                  97.33%     **97.20%**       94.75%           77.87%
+========================  ===========  =============  ===============  ============
 
 | † Here we retrained/tested our BERT model using the same dataset with CkipTagger.
 | † 我們重新訓練／測試我們的 BERT 模型於跟 CkipTagger 相同的資料集。

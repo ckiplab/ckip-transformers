@@ -76,14 +76,14 @@ class CkipTokenClassification(metaclass=ABCMeta):
     def _model_names(cls):
         return NotImplemented  # pragma: no cover
 
-    def _get_model_name_from_level(
+    def _get_model_name(
         self,
-        level: int,
+        model: str,
     ):
         try:
-            model_name = self._model_names[level]
+            model_name = self._model_names[model]
         except KeyError as exc:
-            raise KeyError(f"Invalid level {level}") from exc
+            raise KeyError(f"Invalid model {model}") from exc
 
         return model_name
 
