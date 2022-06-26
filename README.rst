@@ -92,6 +92,7 @@ Models
 - Language Models
    * `ALBERT Tiny <https://huggingface.co/ckiplab/albert-tiny-chinese>`_: ``ckiplab/albert-tiny-chinese``
    * `ALBERT Base <https://huggingface.co/ckiplab/albert-base-chinese>`_: ``ckiplab/albert-base-chinese``
+   * `BERT Tiny <https://huggingface.co/ckiplab/bert-tiny-chinese>`_: ``ckiplab/bert-tiny-chinese``
    * `BERT Base <https://huggingface.co/ckiplab/bert-base-chinese>`_: ``ckiplab/bert-base-chinese``
    * `GPT2 Base <https://huggingface.co/ckiplab/gpt2-base-chinese>`_: ``ckiplab/gpt2-base-chinese``
 
@@ -102,6 +103,9 @@ Models
    * `ALBERT Base — Word Segmentation <https://huggingface.co/ckiplab/albert-base-chinese-ws>`_: ``ckiplab/albert-base-chinese-ws``
    * `ALBERT Base — Part-of-Speech Tagging <https://huggingface.co/ckiplab/albert-base-chinese-pos>`_: ``ckiplab/albert-base-chinese-pos``
    * `ALBERT Base — Named-Entity Recognition <https://huggingface.co/ckiplab/albert-base-chinese-ner>`_: ``ckiplab/albert-base-chinese-ner``
+   * `BERT Tiny — Word Segmentation <https://huggingface.co/ckiplab/bert-tiny-chinese-ws>`_: ``ckiplab/bert-tiny-chinese-ws``
+   * `BERT Tiny — Part-of-Speech Tagging <https://huggingface.co/ckiplab/bert-tiny-chinese-pos>`_: ``ckiplab/bert-tiny-chinese-pos``
+   * `BERT Tiny — Named-Entity Recognition <https://huggingface.co/ckiplab/bert-tiny-chinese-ner>`_: ``ckiplab/bert-tiny-chinese-ner``
    * `BERT Base — Word Segmentation <https://huggingface.co/ckiplab/bert-base-chinese-ws>`_: ``ckiplab/bert-base-chinese-ws``
    * `BERT Base — Part-of-Speech Tagging <https://huggingface.co/ckiplab/bert-base-chinese-pos>`_: ``ckiplab/bert-base-chinese-pos``
    * `BERT Base — Named-Entity Recognition <https://huggingface.co/ckiplab/bert-base-chinese-ner>`_: ``ckiplab/bert-base-chinese-ner``
