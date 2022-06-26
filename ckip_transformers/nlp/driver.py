@@ -6,7 +6,7 @@ This module implements the CKIP Transformers NLP drivers.
 """
 
 __author__ = "Mu Yang <http://muyang.pro>"
-__copyright__ = "2020 CKIP Lab"
+__copyright__ = "2021 CKIP Lab"
 __license__ = "GPL-3.0"
 
 from typing import (
@@ -28,27 +28,28 @@ class CkipWordSegmenter(CkipTokenClassification):
 
     Parameters
     ----------
-        level : ``str`` *optional*, defaults to 3, must be 1—3
-            The model level. The higher the level is, the more accurate and slower the model is.
-        model_name : ``str`` *optional*, overwrites **level**
-            The pretrained model name (e.g. ``'ckiplab/bert-base-chinese-ws'``).
-        device : ``int``, *optional*, defaults to -1,
+        model : ``str`` *optional*, defaults to "bert-base".
+            The pretrained model name provided by CKIP Transformers.
+        model_name : ``str`` *optional*, overwrites **model**
+            The custom pretrained model name (e.g. ``'ckiplab/bert-base-chinese-ws'``).
+        device : ``int``, *optional*, defaults to -1
             Device ordinal for CPU/GPU supports.
             Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id.
     """
 
     _model_names = {
-        1: "ckiplab/albert-tiny-chinese-ws",
-        2: "ckiplab/albert-base-chinese-ws",
-        3: "ckiplab/bert-base-chinese-ws",
+        "albert-tiny": "ckiplab/albert-tiny-chinese-ws",
+        "albert-base": "ckiplab/albert-base-chinese-ws",
+        "bert-tiny": "ckiplab/bert-tiny-chinese-ws",
+        "bert-base": "ckiplab/bert-base-chinese-ws",
     }
 
     def __init__(
         self,
-        level: int = 3,
+        model: str = "bert-base",
         **kwargs,
     ):
-        model_name = kwargs.pop("model_name", self._get_model_name_from_level(level))
+        model_name = kwargs.pop("model_name", self._get_model_name(model))
         super().__init__(model_name=model_name, **kwargs)
 
     def __call__(
@@ -127,27 +128,28 @@ class CkipPosTagger(CkipTokenClassification):
 
     Parameters
     ----------
-        level : ``str`` *optional*, defaults to 3, must be 1—3
-            The model level. The higher the level is, the more accurate and slower the model is.
-        model_name : ``str`` *optional*, overwrites **level**
-            The pretrained model name (e.g. ``'ckiplab/bert-base-chinese-pos'``).
-        device : ``int``, *optional*, defaults to -1,
+        model : ``str`` *optional*, defaults to "bert-base".
+            The pretrained model name provided by CKIP Transformers.
+        model_name : ``str`` *optional*, overwrites **model**
+            The custom pretrained model name (e.g. ``'ckiplab/bert-base-chinese-pos'``).
+        device : ``int``, *optional*, defaults to -1
             Device ordinal for CPU/GPU supports.
             Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id.
     """
 
     _model_names = {
-        1: "ckiplab/albert-tiny-chinese-pos",
-        2: "ckiplab/albert-base-chinese-pos",
-        3: "ckiplab/bert-base-chinese-pos",
+        "albert-tiny": "ckiplab/albert-tiny-chinese-pos",
+        "albert-base": "ckiplab/albert-base-chinese-pos",
+        "bert-tiny": "ckiplab/bert-tiny-chinese-pos",
+        "bert-base": "ckiplab/bert-base-chinese-pos",
     }
 
     def __init__(
         self,
-        level: int = 3,
+        model: str = "bert-base",
         **kwargs,
     ):
-        model_name = kwargs.pop("model_name", self._get_model_name_from_level(level))
+        model_name = kwargs.pop("model_name", self._get_model_name(model))
         super().__init__(model_name=model_name, **kwargs)
 
     def __call__(
@@ -216,27 +218,28 @@ class CkipNerChunker(CkipTokenClassification):
 
     Parameters
     ----------
-        level : ``str`` *optional*, defaults to 3, must be 1—3
-            The model level. The higher the level is, the more accurate and slower the model is.
-        model_name : ``str`` *optional*, overwrites **level**
-            The pretrained model name (e.g. ``'ckiplab/bert-base-chinese-ner'``).
-        device : ``int``, *optional*, defaults to -1,
+        model : ``str`` *optional*, defaults to "bert-base".
+            The pretrained model name provided by CKIP Transformers.
+        model_name : ``str`` *optional*, overwrites **model**
+            The custom pretrained model name (e.g. ``'ckiplab/bert-base-chinese-ner'``).
+        device : ``int``, *optional*, defaults to -1
             Device ordinal for CPU/GPU supports.
             Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id.
     """
 
     _model_names = {
-        1: "ckiplab/albert-tiny-chinese-ner",
-        2: "ckiplab/albert-base-chinese-ner",
-        3: "ckiplab/bert-base-chinese-ner",
+        "albert-tiny": "ckiplab/albert-tiny-chinese-ner",
+        "albert-base": "ckiplab/albert-base-chinese-ner",
+        "bert-tiny": "ckiplab/bert-tiny-chinese-ner",
+        "bert-base": "ckiplab/bert-base-chinese-ner",
     }
 
     def __init__(
         self,
-        level: int = 3,
+        model: str = "bert-base",
         **kwargs,
     ):
-        model_name = kwargs.pop("model_name", self._get_model_name_from_level(level))
+        model_name = kwargs.pop("model_name", self._get_model_name(model))
         super().__init__(model_name=model_name, **kwargs)
 
     def __call__(
@@ -251,7 +254,7 @@ class CkipNerChunker(CkipTokenClassification):
         Parameters
         ----------
             input_text : ``List[str]``
-                The input sentences. Each sentence is a string or a list or string (words).
+                The input sentences. Each sentence is a string.
             use_delim : ``bool``, *optional*, defaults to False
                 Segment sentence (internally) using ``delim_set``.
             delim_set : `str`, *optional*, defaults to ``'，,。：:；;！!？?'``

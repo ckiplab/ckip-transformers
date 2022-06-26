@@ -6,7 +6,7 @@ This module implements the utilities for CKIP Transformers NLP drivers.
 """
 
 __author__ = "Mu Yang <http://muyang.pro>"
-__copyright__ = "2020 CKIP Lab"
+__copyright__ = "2021 CKIP Lab"
 __license__ = "GPL-3.0"
 
 
@@ -51,7 +51,7 @@ class CkipTokenClassification(metaclass=ABCMeta):
             The pretrained model name (e.g. ``'ckiplab/bert-base-chinese-ws'``).
         tokenizer_name : ``str``, *optional*, defaults to **model_name**
             The pretrained tokenizer name (e.g. ``'bert-base-chinese'``).
-        device : ``int``, *optional*, defaults to -1,
+        device : ``int``, *optional*, defaults to -1
             Device ordinal for CPU/GPU supports.
             Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id.
     """
@@ -76,14 +76,14 @@ class CkipTokenClassification(metaclass=ABCMeta):
     def _model_names(cls):
         return NotImplemented  # pragma: no cover
 
-    def _get_model_name_from_level(
+    def _get_model_name(
         self,
-        level: int,
+        model: str,
     ):
         try:
-            model_name = self._model_names[level]
+            model_name = self._model_names[model]
         except KeyError as exc:
-            raise KeyError(f"Invalid level {level}") from exc
+            raise KeyError(f"Invalid model {model}") from exc
 
         return model_name
 
