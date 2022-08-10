@@ -113,8 +113,8 @@ Models
 Model Usage
 ^^^^^^^^^^^
 
-| You may use our model directly from the HuggingFace's transformers library
-| 您可直接透過 HuggingFace's transformers 套件使用我們的模型
+| You may use our model directly from the HuggingFace's transformers library.
+| 您可直接透過 HuggingFace's transformers 套件使用我們的模型。
 
 .. code-block:: bash
 
