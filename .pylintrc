@@ -9,3 +9,7 @@ disable =
 [FORMAT]
 
 max-line-length = 128
+
+[TYPECHECK]
+
+generated-members=torch.device
