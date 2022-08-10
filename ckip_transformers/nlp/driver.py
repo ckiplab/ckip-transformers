@@ -32,7 +32,7 @@ class CkipWordSegmenter(CkipTokenClassification):
             The pretrained model name provided by CKIP Transformers.
         model_name : ``str`` *optional*, overwrites **model**
             The custom pretrained model name (e.g. ``'ckiplab/bert-base-chinese-ws'``).
-        device : ``int``, *optional*, defaults to -1
+        device : ``int`` or ``torch.device``, *optional*, defaults to -1
             Device ordinal for CPU/GPU supports.
             Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id.
     """
@@ -132,7 +132,7 @@ class CkipPosTagger(CkipTokenClassification):
             The pretrained model name provided by CKIP Transformers.
         model_name : ``str`` *optional*, overwrites **model**
             The custom pretrained model name (e.g. ``'ckiplab/bert-base-chinese-pos'``).
-        device : ``int``, *optional*, defaults to -1
+        device : ``int`` or ``torch.device``, *optional*, defaults to -1
             Device ordinal for CPU/GPU supports.
             Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id.
     """
@@ -222,7 +222,7 @@ class CkipNerChunker(CkipTokenClassification):
             The pretrained model name provided by CKIP Transformers.
         model_name : ``str`` *optional*, overwrites **model**
             The custom pretrained model name (e.g. ``'ckiplab/bert-base-chinese-ner'``).
-        device : ``int``, *optional*, defaults to -1
+        device : ``int`` or ``torch.device``, *optional*, defaults to -1
             Device ordinal for CPU/GPU supports.
             Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id.
     """
