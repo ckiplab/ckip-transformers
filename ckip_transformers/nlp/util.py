@@ -70,7 +70,7 @@ class CkipTokenClassification(metaclass=ABCMeta):
         if isinstance(device, torch.device):
             self.device = device
         else:
-            self.device = torch.device("cpu" if device < 0 else f"cuda:{device}")  # pylint: disable=no-member
+            self.device = torch.device("cpu" if device < 0 else f"cuda:{device}")
 
         self.model.to(self.device)
 
