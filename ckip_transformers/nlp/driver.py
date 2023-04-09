@@ -77,8 +77,8 @@ class CkipWordSegmenter(CkipTokenClassification):
             show_progress : ``int``, *optional*, defaults to True
                 Show progress bar.
             pin_memory : ``bool``, *optional*, defaults to True
-                Pin memory in order to accelerate the speed of data transfer to the GPU. This option is
-                incompatible with multiprocessing.
+                Pin memory in order to accelerate the speed of data transfer to the GPU. This option is incompatible with
+                multiprocessing. Disabled on CPU device.
 
         Returns
         -------
@@ -177,8 +177,8 @@ class CkipPosTagger(CkipTokenClassification):
             show_progress : ``int``, *optional*, defaults to True
                 Show progress bar.
             pin_memory : ``bool``, *optional*, defaults to True
-                Pin memory in order to accelerate the speed of data transfer to the GPU. This option is
-                incompatible with multiprocessing.
+                Pin memory in order to accelerate the speed of data transfer to the GPU. This option is incompatible with
+                multiprocessing. Disabled on CPU device.
 
         Returns
         -------
@@ -267,8 +267,8 @@ class CkipNerChunker(CkipTokenClassification):
             show_progress : ``int``, *optional*, defaults to True
                 Show progress bar.
             pin_memory : ``bool``, *optional*, defaults to True
-                Pin memory in order to accelerate the speed of data transfer to the GPU. This option is
-                incompatible with multiprocessing.
+                Pin memory in order to accelerate the speed of data transfer to the GPU. This option is incompatible with
+                multiprocessing. Disabled on CPU device.
 
         Returns
         -------

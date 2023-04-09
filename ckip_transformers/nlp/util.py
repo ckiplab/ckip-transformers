@@ -123,10 +123,14 @@ class CkipTokenClassification(metaclass=ABCMeta):
             show_progress : ``bool``, *optional*, defaults to True
                 Show progress bar.
             pin_memory : ``bool``, *optional*, defaults to True
-                Pin memory in order to accelerate the speed of data transfer to the GPU. This option is
-                incompatible with multiprocessing.
+                Pin memory in order to accelerate the speed of data transfer to the GPU. This option is incompatible with
+                multiprocessing. Disabled on CPU device.
         """
+        # Disable pin memory on CPU device
+        if self.device.type == "cpu":
+            pin_memory = False
 
+        # Check max length
         model_max_length = self.tokenizer.model_max_length - 2  # Add [CLS] and [SEP]
         if max_length:
             assert max_length < model_max_length, (
