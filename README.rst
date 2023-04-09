@@ -472,7 +472,7 @@ License
 
 |GPL-3.0|
 
-Copyright (c) 2021 `CKIP Lab <https://ckip.iis.sinica.edu.tw>`__ under the `GPL-3.0 License <https://www.gnu.org/licenses/gpl-3.0.html>`__.
+Copyright (c) 2023 `CKIP Lab <https://ckip.iis.sinica.edu.tw>`__ under the `GPL-3.0 License <https://www.gnu.org/licenses/gpl-3.0.html>`__.
 
 .. |GPL-3.0| image:: https://www.gnu.org/graphics/gplv3-with-text-136x68.png
    :target: https://www.gnu.org/licenses/gpl-3.0.html

@@ -6,7 +6,7 @@ This module implements the CKIP Transformers NLP drivers.
 """
 
 __author__ = "Mu Yang <http://muyang.pro>"
-__copyright__ = "2021 CKIP Lab"
+__copyright__ = "2023 CKIP Lab"
 __license__ = "GPL-3.0"
 
 from typing import (
@@ -77,8 +77,8 @@ class CkipWordSegmenter(CkipTokenClassification):
             show_progress : ``int``, *optional*, defaults to True
                 Show progress bar.
             pin_memory : ``bool``, *optional*, defaults to True
-                Pin memory in order to accelerate the speed of data transfer to the GPU. This option is
-                incompatible with multiprocessing.
+                Pin memory in order to accelerate the speed of data transfer to the GPU. This option is incompatible with
+                multiprocessing. Disabled on CPU device.
 
         Returns
         -------
@@ -177,8 +177,8 @@ class CkipPosTagger(CkipTokenClassification):
             show_progress : ``int``, *optional*, defaults to True
                 Show progress bar.
             pin_memory : ``bool``, *optional*, defaults to True
-                Pin memory in order to accelerate the speed of data transfer to the GPU. This option is
-                incompatible with multiprocessing.
+                Pin memory in order to accelerate the speed of data transfer to the GPU. This option is incompatible with
+                multiprocessing. Disabled on CPU device.
 
         Returns
         -------
@@ -267,8 +267,8 @@ class CkipNerChunker(CkipTokenClassification):
             show_progress : ``int``, *optional*, defaults to True
                 Show progress bar.
             pin_memory : ``bool``, *optional*, defaults to True
-                Pin memory in order to accelerate the speed of data transfer to the GPU. This option is
-                incompatible with multiprocessing.
+                Pin memory in order to accelerate the speed of data transfer to the GPU. This option is incompatible with
+                multiprocessing. Disabled on CPU device.
 
         Returns
         -------

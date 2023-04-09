@@ -7,10 +7,10 @@ The CKIP Transformers.
 
 __author_name__ = "Mu Yang"
 __author_email__ = "emfomy@gmail.com"
-__copyright__ = "2021 CKIP Lab"
+__copyright__ = "2023 CKIP Lab"
 
 __title__ = "CKIP Transformers"
-__version__ = "0.3.2"
+__version__ = "0.3.3"
 __description__ = "CKIP Transformers"
 __license__ = "GPL-3.0"
 

@@ -7,6 +7,11 @@ CKIP Transformers
    main/readme
 
 .. toctree::
+   :caption: Tables of Tags
+
+   main/tag
+
+.. toctree::
    :caption: Contents
 
    _api/ckip_transformers
