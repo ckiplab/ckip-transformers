@@ -94,6 +94,7 @@ Models
    * `ALBERT Base <https://huggingface.co/ckiplab/albert-base-chinese>`_: ``ckiplab/albert-base-chinese``
    * `BERT Tiny <https://huggingface.co/ckiplab/bert-tiny-chinese>`_: ``ckiplab/bert-tiny-chinese``
    * `BERT Base <https://huggingface.co/ckiplab/bert-base-chinese>`_: ``ckiplab/bert-base-chinese``
+   * `GPT2 Tiny <https://huggingface.co/ckiplab/gpt2-tiny-chinese>`_: ``ckiplab/gpt2-tiny-chinese``
    * `GPT2 Base <https://huggingface.co/ckiplab/gpt2-base-chinese>`_: ``ckiplab/gpt2-base-chinese``
 
 - NLP Task Models
@@ -184,6 +185,7 @@ ckiplab/albert-tiny-chinese         4M          4.80        96.66%    94.48%    
 ckiplab/albert-base-chinese        11M          2.65        97.33%    95.30%      79.47%
 ckiplab/bert-tiny-chinese          12M          8.07        96.98%    95.11%      74.21%
 ckiplab/bert-base-chinese         102M          1.88        97.60%    95.67%      81.18%
+ckiplab/gpt2-tiny-chinese           4M         16.94        --        --          --
 ckiplab/gpt2-base-chinese         102M          8.36        --        --          --
 --------------------------------  -----------  -----------  --------  ----------  ---------
 
