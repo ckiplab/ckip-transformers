@@ -148,7 +148,7 @@ Model Usage
 Model Fine-Tunning
 ^^^^^^^^^^^^^^^^^^
 
-| To fine tunning our model on your own datasets, please refer to the following example from HuggingFace's transformers.
+| To fine-tune our model on your own datasets, please refer to the following example from HuggingFace's transformers.
 | 您可參考以下的範例去微調我們的模型於您自己的資料集。
 
 - https://github.com/huggingface/transformers/tree/master/examples
@@ -389,7 +389,7 @@ NLP Tools Usage
 .. code-block:: python
 
    # Pack word segmentation and part-of-speech results
-   def pack_ws_pos_sentece(sentence_ws, sentence_pos):
+   def pack_ws_pos_sentence(sentence_ws, sentence_pos):
       assert len(sentence_ws) == len(sentence_pos)
       res = []
       for word_ws, word_pos in zip(sentence_ws, sentence_pos):
@@ -399,7 +399,7 @@ NLP Tools Usage
    # Show results
    for sentence, sentence_ws, sentence_pos, sentence_ner in zip(text, ws, pos, ner):
       print(sentence)
-      print(pack_ws_pos_sentece(sentence_ws, sentence_pos))
+      print(pack_ws_pos_sentence(sentence_ws, sentence_pos))
       for entity in sentence_ner:
          print(entity)
       print()
